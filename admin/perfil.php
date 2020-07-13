@@ -181,40 +181,54 @@
         </div>
     </div>
 
+    <!-- <div id="secretaria"></div> -->
+    <!-- <div class="auto" id="auto" style="display: none">
+  Oculta
+</div> -->
+<div class="osecretaria" id="osecretaria" style="display: none">
     <div class="row d-flex text-left">
         <div class="col-md-6 mb-3">
             <label for="secretaria"><i class="fas fa-map-marked-alt"></i>>>Secretaria</label>
             <select class="form-control" id="secretaria" onChange="getSubSecretaria()" required></select>
         </div>
     </div>
-
+</div>
+    
+<div class="osubsecretaria" id="osubsecretaria" style="display: none">
     <div class="row d-flex text-left">
         <div class="col-md-6 mb-3">
             <label for="subsecretaria"><i class="fas fa-map-marked-alt"></i>>>SubSecretaria</label>
             <select class="form-control" id="subsecretaria" onChange="getDirecciongral()" required></select>
         </div>
     </div>
+</div>
 
+<div class="odirecciongral" id="odirecciongral" style="display: none">
     <div class="row d-flex text-left">
         <div class="col-md-6 mb-3">
             <label for="direcciongral"><i class="fas fa-map-marked-alt"></i>>>Direcciongral</label>
             <select class="form-control" id="direcciongral" onChange="getDireccion()" required></select>
         </div>
     </div>
+</div>    
 
+<div class="odireccion" id="odireccion" style="display: none">
     <div class="row d-flex text-left">
         <div class="col-md-6 mb-3">
             <label for="direccion"><i class="fas fa-map-marked-alt"></i>>>Direccion</label>
             <select class="form-control" id="direccion" onChange="getCoordinacion()" required></select>
         </div>
     </div>
+</div>    
     
+<div class="ocoordinacion" id="ocoordinacion" style="display: none">
     <div class="row d-flex text-left">
         <div class="col-md-6 mb-3">
             <label for="coordinacion"><i class="fas fa-map-marked-alt"></i>>>Coordinacion</label>
             <select class="form-control" id="coordinacion" onChange="getCoord()" required></select>
         </div>    
-    </div>    
+    </div>
+</div>      
     <!-- Fin categoria -->
       
 <!--

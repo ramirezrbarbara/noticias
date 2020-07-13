@@ -1,8 +1,7 @@
-
 function getMinisterio() {
     $("#ministerio").empty();
 
-    fetch('http://127.0.0.1/organigrama/api/organigrama/', {
+    fetch('https://sistemas.mininterior.gob.ar/api/organigrama/api/organigrama/', {
         method: "GET",
         headers: new Headers({
             'Content-Type': 'application/x-www-form-urlencoded',
@@ -11,12 +10,18 @@ function getMinisterio() {
         .then(resp => resp.json())
         .then(respObj => {
 
-            if (respObj.status == 0) {
-                var objData = JSON.parse(respObj.messege);
+            if (respObj.status == 0) {               
+                if (respObj.messege != "") {                    
+                    // var intro = document.getElementById('osecretaria');
+                    // intro.style.display = 'block';
+                    //$("#osecretaria").attr("style", "block");
 
-                $("#ministerio").append('<option value="">Elija una opción</option>');
-                for (i = 0; i < objData.length; i++) {
-                    $("#ministerio").append('<option value="' + objData[i].id + '">' + objData[i].ministerio + '</option>');
+                    var objData = JSON.parse(respObj.messege);
+
+                    $("#ministerio").append('<option value="">Elija una opción</option>');
+                    for (i = 0; i < objData.length; i++) {
+                        $("#ministerio").append('<option value="' + objData[i].id + '">' + objData[i].ministerio + '</option>');
+                    }
                 }
 
             } else {
@@ -28,7 +33,37 @@ function getMinisterio() {
         });
 }
 
+// function getMinisterio() {
+//     $("#ministerio").empty();
+
+//     fetch('https://sistemas.mininterior.gob.ar/api/organigrama/api/organigrama/', {
+//         method: "GET",
+//         headers: new Headers({
+//             'Content-Type': 'application/x-www-form-urlencoded',
+//         })
+//     })
+//         .then(resp => resp.json())
+//         .then(respObj => {
+
+//             if (respObj.status == 0) {
+//                 var objData = JSON.parse(respObj.messege);                
+
+//                 $("#ministerio").append('<option value="">Elija una opción</option>');
+//                 for (i = 0; i < objData.length; i++) {
+//                     $("#ministerio").append('<option value="' + objData[i].id + '">' + objData[i].ministerio + '</option>');
+//                 }
+
+//             } else {
+//                 swal("Algo salió mal!", respObj.messege, "error");
+//             }
+//         })
+//         .catch(error => {
+//             swal("Algo salió mal!", error, "error");
+//         });
+// }
+
 function getSecretaria() {
+    $("#osecretaria").attr("style", "block");
     $("#secretaria").empty();
     $("#subsecretaria").empty();
     $("#direcciongral").empty();
@@ -36,8 +71,18 @@ function getSecretaria() {
     $("#coordinacion").empty();
 
     var ministerio = $("#ministerio").val();
+    // console.log(ministerio);
+    // if (empty(ministerio)) {
+    //     $("#osecretaria").attr("style", "block");
+    // }
+    //     $("#osecretaria").attr("style", "none");
+    //     $("#osubsecretaria").attr("style", "none");
+    //     $("#odirecciongral").attr("style", "none");
+    //     $("#odireccion").attr("style", "none");
+    //     $("#ocoordinacion").attr("style", "none");
+    // }
     // alert(ministerio);
-    fetch('http://127.0.0.1/organigrama/api/organigrama/secretarias/' + ministerio, {
+    fetch('https://sistemas.mininterior.gob.ar/api/organigrama/api/organigrama/secretarias/' + ministerio, {
         method: "GET",
         headers: new Headers({
             'Content-Type': 'application/x-www-form-urlencoded',
@@ -45,13 +90,18 @@ function getSecretaria() {
     })
         .then(resp => resp.json())
         .then(respObj => {
+            //console.log(respObj.messege);
+            if (respObj.status == 0) {                
+                if (respObj.messege != "") {                    
 
-            if (respObj.status == 0) {
-                var objData = JSON.parse(respObj.messege);
+                    var objData = JSON.parse(respObj.messege);
 
-                $("#secretaria").append('<option value="">Elija una opción</option>');
-                for (i = 0; i < objData.length; i++) {
-                    $("#secretaria").append('<option value="' + objData[i].id + '">' + objData[i].descripcion + '</option>');
+                    $("#secretaria").append('<option value="">Elija una opción</option>');
+                    for (i = 0; i < objData.length; i++) {
+                        $("#secretaria").append('<option value="' + objData[i].id + '">' + objData[i].descripcion + '</option>');
+                    }
+                } else {
+                    $("#osubsecretaria").attr("style", "none");
                 }
 
             } else {
@@ -64,6 +114,7 @@ function getSecretaria() {
 }
 
 function getSubSecretaria() {
+    $("#osubsecretaria").attr("style", "block");
     $("#subsecretaria").empty();
     $("#direcciongral").empty();
     $("#direccion").empty();
@@ -71,7 +122,7 @@ function getSubSecretaria() {
 
     var ministerio = $("#secretaria").val();
     // alert(ministerio);
-    fetch('http://127.0.0.1/organigrama/api/organigrama/subsecretarias/' + ministerio, {
+    fetch('https://sistemas.mininterior.gob.ar/api/organigrama/api/organigrama/subsecretarias/' + ministerio, {
         method: "GET",
         headers: new Headers({
             'Content-Type': 'application/x-www-form-urlencoded',
@@ -80,8 +131,8 @@ function getSubSecretaria() {
         .then(resp => resp.json())
         .then(respObj => {
 
-            if (respObj.status == 0) {
-                var objData = JSON.parse(respObj.messege);
+            if (respObj.status == 0) {                
+                var objData = JSON.parse(respObj.messege);                
 
                 $("#subsecretaria").append('<option value="">Elija una opción</option>');
                 for (i = 0; i < objData.length; i++) {
@@ -98,13 +149,14 @@ function getSubSecretaria() {
 }
 
 function getDirecciongral() {
+    $("#odirecciongral").attr("style", "block");
     $("#direcciongral").empty();
     $("#direccion").empty();
     $("#coordinacion").empty();
 
     var ministerio = $("#subsecretaria").val();
     // alert(ministerio);
-    fetch('http://127.0.0.1/organigrama/api/organigrama/direcciongral/' + ministerio, {
+    fetch('https://sistemas.mininterior.gob.ar/api/organigrama/api/organigrama/direcciongral/' + ministerio, {
         method: "GET",
         headers: new Headers({
             'Content-Type': 'application/x-www-form-urlencoded',
@@ -113,8 +165,8 @@ function getDirecciongral() {
         .then(resp => resp.json())
         .then(respObj => {
 
-            if (respObj.status == 0) {
-                var objData = JSON.parse(respObj.messege);
+            if (respObj.status == 0) {                
+                var objData = JSON.parse(respObj.messege);                
 
                 $("#direcciongral").append('<option value="">Elija una opción</option>');
                 for (i = 0; i < objData.length; i++) {
@@ -131,12 +183,19 @@ function getDirecciongral() {
 }
 
 function getDireccion() {
+    //$("#odireccion").attr("style", "block");
     $("#direccion").empty();
     $("#coordinacion").empty();
 
     var ministerio = $("#direcciongral").val();
+    if (empty(ministerio)) {
+        $("#odireccion").attr("style", "block");
+    } else {
+        $("#odireccion").attr("style", "none");
+        $("#ocoordinacion").attr("style", "none");
+    }
     // alert(ministerio);
-    fetch('http://127.0.0.1/organigrama/api/organigrama/direccion/' + ministerio, {
+    fetch('https://sistemas.mininterior.gob.ar/api/organigrama/api/organigrama/direccion/' + ministerio, {
         method: "GET",
         headers: new Headers({
             'Content-Type': 'application/x-www-form-urlencoded',
@@ -145,7 +204,7 @@ function getDireccion() {
         .then(resp => resp.json())
         .then(respObj => {
 
-            if (respObj.status == 0) {
+            if (respObj.status == 0) {                
                 var objData = JSON.parse(respObj.messege);
 
                 $("#direccion").append('<option value="">Elija una opción</option>');
@@ -163,11 +222,12 @@ function getDireccion() {
 }
 
 function getCoordinacion() {
+    $("#ocoordinacion").attr("style", "block");
     $("#coordinacion").empty();
 
     var ministerio = $("#direccion").val();
     // alert(ministerio);
-    fetch('http://127.0.0.1/organigrama/api/organigrama/coordinaciones/' + ministerio, {
+    fetch('https://sistemas.mininterior.gob.ar/api/organigrama/api/organigrama/coordinaciones/' + ministerio, {
         method: "GET",
         headers: new Headers({
             'Content-Type': 'application/x-www-form-urlencoded',

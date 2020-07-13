@@ -137,8 +137,6 @@
       
       </div>
 
-
-      
        <div class="form-group">
         <label for="usuarios">Status de la entrada</label>
       

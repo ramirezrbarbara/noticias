@@ -70,27 +70,27 @@
           <input type="text" class="form-control" name="entrada_titulo">
       </div>
 
-         <div class="form-group">
-       <label for="categoria">Categoría</label>
+         <!-- <div class="form-group">
+            <label for="categoria">Categoría</label>
        
          <select name="entrada_categoria" id="">
           <option value="">seleccione</option>
           
           <?php  
            
-           $cat = $categoria->get_categorias();
+        //    $cat = $categoria->get_categorias();
               
-               for($i=0;$i<count($cat);$i++){
+        //        for($i=0;$i<count($cat);$i++){
            ?>
           
-              <option value="<?php echo $cat[$i]["id_categoria"]?>"><?php echo $cat[$i]["titulo"]?></option>
+              <option value="<?php // echo $cat[$i]["id_categoria"]?>"><?php // echo $cat[$i]["titulo"]?></option>
           
-          <?php } ?>
+          <?php //} ?>
 
            
       </select>
       
-      </div>
+      </div> -->
 
 
        <div class="form-group">
@@ -107,7 +107,11 @@
       
       </div>
 
-      
+        <!-- Asigno la categoria que viene de la base de datos -->
+        <div class="form-group">
+            <label>Categoría</label>
+            <input type="text" class="form-control" value="<?php echo $_SESSION['correo'];?>" disabled>
+        </div>
 
        <div class="form-group">
        <label for="status">Status de la entrada</label>
