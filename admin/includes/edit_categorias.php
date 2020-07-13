@@ -1,5 +1,5 @@
     <form action="" method="post">
-      <div class="form-group">
+      <div class="col-6 form-group">
          <label for="cat-titulo">Editar Categoría</label>
          
        
@@ -16,7 +16,7 @@
  
               
       </div>
-       <div class="form-group">
+       <div class="col-6 form-group">
           <input class="btn btn-primary" type="submit" name="editar_categoria" value="Editar Categoria">
       </div>
 

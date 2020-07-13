@@ -63,8 +63,21 @@
        
        $entrada->resetear_vistas_entrada($id_entrada);
    }
+
+
+/* usuario  */
+if(isset($_GET["id_usuario"])){
+      
+    $id_usuario= $_GET["id_usuario"];
+    
+    $user= $usuarios->get_usuario_por_id($id_usuario);
+}
+
     
 ?>
+
+
+
 <h1 class="text-primary text-center">ENTRADAS</h1>
 
 <form id="form" action="" method='post'>
@@ -97,10 +110,10 @@
         </div>
 
 
-        <thead class="table table-bordered table-striped dataTable thead-dark">
+        <thead class="table table-bordered table-striped dataTable thead-dark" style="text-align:center">
             <tr>
                 <!-- <th><input id="selecciona_todo" type="checkbox"></th> -->
-                <th>Id</th>
+                <!-- <th>Id</th> -->
                 <th>Fecha</th>
                 <th>Usuarios</th>
                 <th>Titulo</th>
@@ -113,11 +126,13 @@
             </tr>
         </thead>
         
-        <tbody>                            
-            <?php for($i=0;$i<count($datos);$i++){?>
+        <tbody  style="text-align:center">                            
+            <?php 
+            
+            for($i=0;$i<count($datos);$i++){?>
                 <tr>
                     <!-- <td><input class='checkBoxes' type='checkbox' name='checkBoxArray[]' value='<?php echo $datos[$i]["id_entrada"];?>'></td> -->
-                    <td><?php echo $datos[$i]["id_entrada"];?></td>
+                    <!-- <td><?php echo $datos[$i]["id_entrada"];?></td> -->
                     <td><?php echo date("d-m-Y",strtotime($datos[$i]["entrada_fecha"]));?></td>
                     <td><?php echo $datos[$i]["entrada_autor"];?></td>
                     <td><?php echo $datos[$i]["entrada_titulo"];?></td>

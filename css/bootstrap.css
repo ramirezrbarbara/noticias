@@ -173,6 +173,10 @@ a:not([href]):hover {
   text-decoration: none;
 }
 
+th {
+  text-align: center;
+}
+
 pre,
 code,
 kbd,
@@ -1694,6 +1698,7 @@ pre code {
   width: 100%;
   margin-bottom: 1rem;
   color: #212529;
+  text-align: center;
 }
 
 .table th,
@@ -1706,6 +1711,7 @@ pre code {
 .table thead th {
   vertical-align: bottom;
   border-bottom: 2px solid #dee2e6;
+  text-align: center;
 }
 
 .table tbody + tbody {
@@ -1942,6 +1948,7 @@ pre code {
   color: #fff;
   background-color: #343a40;
   border-color: #454d55;
+  text-align: center !important;
 }
 
 .table .thead-light th {
@@ -1953,6 +1960,7 @@ pre code {
 .table-dark {
   color: #fff;
   background-color: #343a40;
+  text-align: center;
 }
 
 .table-dark th,
@@ -1963,6 +1971,7 @@ pre code {
 
 .table-dark.table-bordered {
   border: 0;
+  text-align: center;
 }
 
 .table-dark.table-striped tbody tr:nth-of-type(odd) {

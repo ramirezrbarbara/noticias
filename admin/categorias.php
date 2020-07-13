@@ -136,14 +136,15 @@
     ?>     
            
     
-    <form action="" method="post">
-      <div class="form-group">
-         <label for="cat-titulo">Añadir categoría</label>
-          <input type="text" class="form-control" name="cat_titulo">
-      </div>
-       <div class="form-group">
-          <input class="btn btn-primary" type="submit" name="submit" value="Añadir Categoria">
-      </div>
+    <form action="" method="post" >
+        <div class="col-6 form-group" style="float:left;">
+            <label for="cat-titulo">Añadir categoría</label>
+            <input type="text" class="form-control" name="cat_titulo">
+        </div>
+        <div class="col-3" style="float:right;">
+            <input class="btn btn-primary" type="submit" name="submit" value="Añadir Categoria">
+        </div>
+     
 
     </form>
     
@@ -165,11 +166,11 @@
     <table class="table table-striped table-bordered" >
       
 
-        <thead class="table table-bordered table-striped dataTable thead-dark">
+        <thead class="table table-bordered table-striped dataTable thead-dark" style="text-align:center">
             <tr>
                
                 <th>Titulo de la Categoría</th>
-                <th>Accion</th>
+                <th style="width:10%">Accion</th>
             </tr>
         </thead>
         <tbody>
@@ -182,7 +183,7 @@
        ?>
    
     
-              <tr>
+              <tr style="text-align:center">
                   <!-- <td><?php echo $datos[$i]["id_categoria"];?></td> -->
                   <td><?php echo $datos[$i]["titulo"];?></td>
                   <!-- <td><a class="btn btn-primary " ><i class="fa fa-pencil"></i>  Editar</a></td>

@@ -37,6 +37,30 @@
             }
           
       }
+
+      public function get_entradas_suscriptor($user){
+          
+        $sql="select * from entradas order by id_entrada DESC where entrada_autor=?"; 
+        
+        $resultado=$this->db->prepare($sql);
+
+        $resultado->bindValue(4, $user);
+        
+          if(!$resultado->execute()){
+            
+              header("Location:index.php?m=1");
+          
+          }else{
+              
+               while($reg=$resultado->fetch()){
+                   
+                    $this->entradas[]=$reg;  
+               }
+              
+              return $this->entradas;
+          }
+        
+    }
       
        public function get_ultimas_entradas(){
           

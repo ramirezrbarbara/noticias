@@ -6,11 +6,24 @@
       
 <?php
 
+
+
+  if(isset($_GET["id_usuario"])){
+      
+      $id_usuario= $_GET["id_usuario"];
+      
+      $user= $usuarios->get_usuario_por_id($id_usuario);
+  }
+
+
+
     $entrada = new Entradas();
     $categoria= new Categorias();
     $comentario = new Comentarios();   
 
+
     $datos= $entrada->get_entradas();
+    $datosSuscriptor = $entrada->get_entradas_suscriptor($id_usuario);
 
      
 ?>
