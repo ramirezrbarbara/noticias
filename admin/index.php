@@ -13,13 +13,12 @@
   ?> 
    
    
-    <div id="wrapper">
+    <!-- <div id="wrapper"> -->
 
 
         <!-- Navigation -->
  
-        <?php require_once "includes/admin_menu.php" ?>
-        
+        <?php require_once "includes/admin_menu.php" ?>        
    
         <div id="page-wrapper">
 
@@ -69,31 +68,31 @@
                 
        
                 <div class="row">
-    <div class="col-lg-3 col-md-6">
-        <div class="panel panel-green">
-            <div class="panel-heading">
-                <div class="row">
-                    <div class="col-xs-3">
-                        <i class="fa fa-file-text fa-5x"></i>
-                    </div>
-                    <div class="col-xs-9 text-right">
-                      
-                      
-                         <div class="huge"><?php echo $entrada->get_numero_entradas();?></div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="panel panel-green">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-file-text fa-5x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        
+                                        
+                                            <div class="huge"><?php echo $entrada->get_numero_entradas();?></div>
 
-                        <div>Entradas</div>
+                                        <div>Entradas</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="entradas.php">
+                                <div class="panel-footer">
+                                    <span class="pull-left">Ver Detalles</span>
+                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </a>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <a href="entradas.php">
-                <div class="panel-footer">
-                    <span class="pull-left">Ver Detalles</span>
-                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                    <div class="clearfix"></div>
-                </div>
-            </a>
-        </div>
-    </div>
                     <div class="col-lg-3 col-md-6">
                         <div class="panel panel-primary">
                             <div class="panel-heading">
@@ -172,61 +171,61 @@
                 <!-- /.row -->
                                 
 
-            <div class="row">
+                <div class="row">
                 
-                   
-                  <script type="text/javascript">
-                  google.charts.load('current', {'packages':['bar']});
-                  google.charts.setOnLoadCallback(drawChart);
+                    <script type="text/javascript">
+                    google.charts.load('current', {'packages':['bar']});
+                    google.charts.setOnLoadCallback(drawChart);
 
-                  function drawChart() {
-                    var data = google.visualization.arrayToDataTable([
-                     ['Data','Registros'],
-                      <?php
+                    function drawChart() {
+                        var data = google.visualization.arrayToDataTable([
+                        ['Data','Registros'],
+                        <?php
+                            
+                            $element_text = ['Todas las entradas','Entradas publicadas','Entradas borrador','Comentarios','Comentarios pendiente','Usuarios','Suscriptores','Categorias'];
+                            
+                            $element_count = [$entrada->get_numero_entradas(),$entrada->get_numero_entradas_publicadas(),$entrada->get_numero_entradas_borrador(),$comentario->get_numero_comentarios(),$comentario->get_numero_comentarios_no_aprobado(),$usuarios->get_numero_usuarios(),$usuarios->get_numero_usuarios_suscriptor(),$categoria->get_numero_categorias()];
+                            
+                            
+                            for($i=0;$i<8;$i++){
+                                
+                                echo "['$element_text[$i]'" . "," . "$element_count[$i]],";
+                                
+                            }
+                            
+                        ?>   
                         
-                        $element_text = ['Todas las entradas','Entradas publicadas','Entradas borrador','Comentarios','Comentarios pendiente','Usuarios','Suscriptores','Categorias'];
+                            
+                        /*['Year', 'Sales'],
+                        ['2014', 1000],*/
                         
-                        $element_count = [$entrada->get_numero_entradas(),$entrada->get_numero_entradas_publicadas(),$entrada->get_numero_entradas_borrador(),$comentario->get_numero_comentarios(),$comentario->get_numero_comentarios_no_aprobado(),$usuarios->get_numero_usuarios(),$usuarios->get_numero_usuarios_suscriptor(),$categoria->get_numero_categorias()];
-                        
-                         
-                           for($i=0;$i<8;$i++){
-                               
-                             echo "['$element_text[$i]'" . "," . "$element_count[$i]],";
-                               
-                           }
-                        
-                      ?>   
-                      
-                        
-                    /*['Year', 'Sales'],
-                      ['2014', 1000],*/
-                      
-                    ]);
+                        ]);
 
-                    var options = {
-                      chart: {
-                        title: '',
-                        subtitle: '',
-                      }
-                    };
+                        var options = {
+                        chart: {
+                            title: '',
+                            subtitle: '',
+                        }
+                        };
 
-                    var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+                        var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
 
-                    chart.draw(data, google.charts.Bar.convertOptions(options));
-                  }
-                </script>
-                   
-                <div id="columnchart_material" style="width: auto; height: 500px;"></div>   
-                  
-            </div>
+                        chart.draw(data, google.charts.Bar.convertOptions(options));
+                    }
+                    </script>
+                    
+                    <div id="columnchart_material" style="width: auto; height: 500px;"></div>   
+                    
+                </div>
 
 
             </div>
             <!-- /.container-fluid -->
 
-        </div>
-        
-    
+        </div>    
         <!-- /#page-wrapper -->
+    
+    </div>
+    <!-- Cierra el id content del admin_menu-->
         
     <?php require_once "includes/admin_footer.php" ?>

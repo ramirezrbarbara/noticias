@@ -32,7 +32,8 @@
     <link href="css/bootstrap.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="css/sb-admin.css" rel="stylesheet">
+    <!-- <link href="css/sb-admin.css" rel="stylesheet"> -->
+    <link href="css/sidebar.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -50,6 +51,7 @@
  <!--<script type="text/javascript" src="https://www.google.com/jsapi"></script>-->
 
 <script src="js/jquery.js"></script>
+<script src="js/sweetalert.min.js"></script>
 
 <script  src="https://cdn.ckeditor.com/ckeditor5/10.1.0/classic/ckeditor.js"></script>
 

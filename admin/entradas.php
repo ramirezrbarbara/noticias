@@ -8,12 +8,12 @@
 
 
 
-  if(isset($_GET["id_usuario"])){
+  // if(isset($_GET["id_usuario"])){
       
-      $id_usuario= $_GET["id_usuario"];
+  //     $id_usuario= $_GET["id_usuario"];
       
-      $user= $usuarios->get_usuario_por_id($id_usuario);
-  }
+  //     $user= $usuarios->get_usuario_por_id($id_usuario);
+  // }
 
 
 
@@ -23,7 +23,7 @@
 
 
     $datos= $entrada->get_entradas();
-    $datosSuscriptor = $entrada->get_entradas_suscriptor($id_usuario);
+   //$datosSuscriptor = $entrada->get_entradas_suscriptor($id_usuario);
 
      
 ?>
@@ -55,119 +55,119 @@
           
             
            
-<?php
-            
-     if(isset($_GET["m"])){
-         
-         switch($_GET["m"]){
-            /*El ajuste solo se hizo en eliminar_entrada($id_entrada)*/
-            /*case 1 por case 2,case 2 por case 5,case 3 por case 6*/ 
-             case "2":
-             ?>
-               <h2 style="color:red">Fallo en la consulta</h2>
-             <?php
-             break;
-                 
-             case "5":
-             ?>
-               <h2 style="color:red">No existe el id de la entrada</h2>
-             <?php
-             break;
-                 
-             case "6":
-             ?>
-               <h2 style="color:green">se ha eliminado el registro de la entrada</h2>
-             <?php
-             break;
-                 
-             case "7":
-             ?>
-               <h2 style="color:green">El status se ha cambiado a publicado</h2>
-             <?php
-             break;
-                 
-             case "8":
-             ?>
-               <h2 style="color:green">El status se ha cambiado a borrador</h2>
-             <?php
-             break;
-                 
-             case "9":
-             ?>
-                <h2 style="color:red">no se ha cambiado el status de alguno de los registros</h2>
+            <?php
+                        
+                if(isset($_GET["m"])){
+                    
+                    switch($_GET["m"]){
+                        /*El ajuste solo se hizo en eliminar_entrada($id_entrada)*/
+                        /*case 1 por case 2,case 2 por case 5,case 3 por case 6*/ 
+                        case "2":
+                        ?>
+                          <h2 style="color:red">Fallo en la consulta</h2>
+                        <?php
+                        break;
+                            
+                        case "5":
+                        ?>
+                          <h2 style="color:red">No existe el id de la entrada</h2>
+                        <?php
+                        break;
+                            
+                        case "6":
+                        ?>
+                          <h2 style="color:green">se ha eliminado el registro de la entrada</h2>
+                        <?php
+                        break;
+                            
+                        case "7":
+                        ?>
+                          <h2 style="color:green">El status se ha cambiado a publicado</h2>
+                        <?php
+                        break;
+                            
+                        case "8":
+                        ?>
+                          <h2 style="color:green">El status se ha cambiado a borrador</h2>
+                        <?php
+                        break;
+                            
+                        case "9":
+                        ?>
+                            <h2 style="color:red">no se ha cambiado el status de alguno de los registros</h2>
+                            
+                        <?php
+                            
+                        break;
+                            
+                        case "10":
+                        ?>
+                          <h2 style="color:green">Se han clonado los registros</h2>
+                        <?php
+                        break;
+                            
+                        case "11":
+                        ?>
+                          <h2 style="color:red">No se han clonado los registros</h2>
+                        <?php
+                        break;
+                            
+                        case "12":
+                        ?>
+                          <h2 style="color:green">Se ha reseteado las vistas de la entrada</h2>
+                        <?php
+                        break;
+                            
+                        case "13":
+                        ?>
+                          <h2 style="color:green">No se ha reseteado las vistas de la entrada</h2>
+                        <?php
+                        break;
+                    }
+                }            
+            ?>           
+                      
+                        
+                        
+            <?php
                 
-             <?php
-                 
-             break;
-                 
-             case "10":
-             ?>
-               <h2 style="color:green">Se han clonado los registros</h2>
-             <?php
-             break;
-                 
-             case "11":
-             ?>
-               <h2 style="color:red">No se han clonado los registros</h2>
-             <?php
-             break;
-                 
-             case "12":
-             ?>
-               <h2 style="color:green">Se ha reseteado las vistas de la entrada</h2>
-             <?php
-             break;
-                 
-             case "13":
-             ?>
-               <h2 style="color:green">No se ha reseteado las vistas de la entrada</h2>
-             <?php
-             break;
-         }
-     }            
-?>           
-           
-            
-            
-<?php
-    
-if(isset($_GET['accion'])){
+            if(isset($_GET['accion'])){
 
-$accion = $_GET['accion'];
+            $accion = $_GET['accion'];
 
-} else {
+            } else {
 
-$accion = '';
+            $accion = '';
 
-}
+            }
 
-switch($accion) {
-    
-    case 'add_entrada';
-    
-     require_once "includes/add_entrada.php";
-    
-    break; 
-    
-    
-    case 'edit_entrada';
-    
-    require_once "includes/edit_entrada.php";
-        
-    break;
-    
+            switch($accion) {
+                
+                case 'add_entrada';
+                
+                require_once "includes/add_entrada.php";
+                
+                break; 
+                
+                
+                case 'edit_entrada';
+                
+                require_once "includes/edit_entrada.php";
+                    
+                break;
+                
 
-    default:
-    
-    require_once "includes/ver_entradas.php";
-    
-    break;
-        
-    
-}
-        
-        
-?>
+                default:
+                
+                require_once "includes/ver_entradas.php";
+                
+                break;
+                    
+                
+            }
+                    
+                    
+            ?>
 
             </div>
         </div>

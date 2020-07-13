@@ -147,10 +147,10 @@
      
      
          <div class="form-group">
-       
+       <div>Rol de usuario</div><br>
        <select name="rol" id="">
        
-      <option value="<?php echo $datos[0]["rol"]?>"><?php echo $datos[0]["rol"]?></option>
+        <option value="<?php echo $datos[0]["rol"]?>"><?php echo $datos[0]["rol"]?></option>
       
            <?php
            
@@ -171,6 +171,51 @@
        
        
       </div>
+
+    <!-- CATEGORIAS ORGANIGRAMA --> 
+    <div>Categoría</div><br>
+    <div class="row d-flex text-left">
+        <div class="col-md-6 mb-3">
+            <label for="ministerio"><i class="fas fa-map-marked-alt"></i>>>Ministerio</label>
+            <select class="form-control" id="ministerio" onChange="getSecretaria()" required></select>
+        </div>
+    </div>
+
+    <div class="row d-flex text-left">
+        <div class="col-md-6 mb-3">
+            <label for="secretaria"><i class="fas fa-map-marked-alt"></i>>>Secretaria</label>
+            <select class="form-control" id="secretaria" onChange="getSubSecretaria()" required></select>
+        </div>
+    </div>
+
+    <div class="row d-flex text-left">
+        <div class="col-md-6 mb-3">
+            <label for="subsecretaria"><i class="fas fa-map-marked-alt"></i>>>SubSecretaria</label>
+            <select class="form-control" id="subsecretaria" onChange="getDirecciongral()" required></select>
+        </div>
+    </div>
+
+    <div class="row d-flex text-left">
+        <div class="col-md-6 mb-3">
+            <label for="direcciongral"><i class="fas fa-map-marked-alt"></i>>>Direcciongral</label>
+            <select class="form-control" id="direcciongral" onChange="getDireccion()" required></select>
+        </div>
+    </div>
+
+    <div class="row d-flex text-left">
+        <div class="col-md-6 mb-3">
+            <label for="direccion"><i class="fas fa-map-marked-alt"></i>>>Direccion</label>
+            <select class="form-control" id="direccion" onChange="getCoordinacion()" required></select>
+        </div>
+    </div>
+    
+    <div class="row d-flex text-left">
+        <div class="col-md-6 mb-3">
+            <label for="coordinacion"><i class="fas fa-map-marked-alt"></i>>>Coordinacion</label>
+            <select class="form-control" id="coordinacion" onChange="getCoord()" required></select>
+        </div>    
+    </div>    
+    <!-- Fin categoria -->
       
 <!--
       <div class="form-group">
