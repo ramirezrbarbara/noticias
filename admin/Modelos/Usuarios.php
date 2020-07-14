@@ -451,11 +451,11 @@
           
       }
       
-      public function editar_perfil($id_usuario,$usuario,$password,$nombre,$apellido,$imagen,$rol,$coordinacion){
+      public function editar_perfil($id_usuario,$usuario,$password,$nombre,$apellido,$imagen,$rol,$idd){
            
           
            /*validamos que los campos no esten vacios*/
-              if(empty($_POST["nombre"]) or empty($_POST["apellido"]) or empty($_POST["rol"]) or empty($_POST["usuario"]) or empty($_POST["password"])){
+              if(empty($_POST["nombre"]) or empty($_POST["apellido"]) or empty($_POST["rol"]) or empty($_POST["usuario"]) or empty($_POST["password"]) or empty($idd)){
                  
                  header("Location:perfil.php?m=1");
                  exit();
@@ -465,8 +465,7 @@
               $password=$_POST["password"];
 
               $pass_encriptado= password_hash($password,PASSWORD_DEFAULT);
-
-              // $coordinacion=100;
+              
            $sql="update usuarios set
            
              usuario=?,
@@ -502,7 +501,7 @@
            $resultado->bindValue(4,$_POST["apellido"]);
            //$resultado->bindValue(4,$entrada_imagen);
            $resultado->bindValue(5,$_POST["rol"]);
-           $resultado->bindValue(6,$coordinacion);
+           $resultado->bindValue(6,$idd);
            $resultado->bindValue(7,$_SESSION["id_usuario"]);
            
           //  $resultado->bindValue(1,$_POST["usuario"]);

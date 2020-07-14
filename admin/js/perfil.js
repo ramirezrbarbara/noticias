@@ -322,22 +322,30 @@ function getCoordinacion() {
         });
 }
 
-function Setdata() {
+$('#editar_usuario').click(function () {
+    $("#caja_valor").val("");
     var iddSec = $("#secretaria>option:selected").attr("idd");
     var iddSub = $("#subsecretaria>option:selected").attr("idd");
     var iddDgr = $("#direcciongral>option:selected").attr("idd");
-    var iddDir = $("#direccion>option:selected").attr("idd");
+    var iddDir = $("#direccion>option:selected").attr("idd");   
     var iddCoo = $("#coordinacion>option:selected").attr("idd");
-  
-    // if (iddCoo != "") {
-    //     alert(idd);
-    // }else if (iddDir != "") {
-    //     alert(idd);
-    // }
 
-    alert(iddCoo);
+    // alert('Coor:' + iddCoo);
+    // alert('Dir:' + iddDir);
+    // alert('Dgr:' + iddDgr);
 
-    //return ''iddCoo'';
-}
+    if (iddCoo != null) {
+        $("#caja_valor").val(iddCoo);
+    } else if (iddDir != null) {        
+        $("#caja_valor").val(iddDir);
+    } else if (iddDgr != null) {
+        $("#caja_valor").val(iddDgr);
+    } else if (iddSub != null) {
+        $("#caja_valor").val(iddSub);
+    } else if (iddSec != null) {
+        $("#caja_valor").val(iddSec);
+    }
+
+}); 
 
 getMinisterio();

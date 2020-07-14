@@ -34,8 +34,8 @@
             
             <?php
     
-       if(isset($_POST["editar_usuario"])){
-          
+       if(isset($_POST["editar_usuario"])){                
+
           $id_usuario=$_SESSION["id_usuario"];
           $usuario=$_POST["usuario"];
            
@@ -45,12 +45,10 @@
           $pass_encriptado= password_hash($password,PASSWORD_DEFAULT);   
            
           $nombre=$_POST["nombre"]; 
-          $apellido=$_POST["apellido"];    
+          $apellido=$_POST["apellido"];
           $imagen="imagen";
           $rol=$_POST["rol"];
-          //$coordinacion=$_POST["coordinacion"];
-          $coordinacion=getAttribute("coordinacion");
-          
+          $idd=$_POST["caja_valor"];
            
           /*$usuario_imagen=$_FILES["entrada_imagen"]["name"];
           $usuario_imagen_temp=$_FILES["entrada_imagen"]["tmp_name"]; 
@@ -65,7 +63,7 @@
 
            
             /*si se envia el formulario se edita el usuario*/
-           $usuarios->editar_perfil($id_usuario,$usuario,$pass_encriptado,$nombre,$apellido,$imagen,$rol,$coordinacion);
+           $usuarios->editar_perfil($id_usuario,$usuario,$pass_encriptado,$nombre,$apellido,$imagen,$rol,$idd);
        }
 
 
@@ -180,7 +178,7 @@
     <div class="row d-flex text-left">
         <div class="col-md-6 mb-3">
             <label for="ministerio"><i class="fas fa-map-marked-alt"></i>>>Ministerio</label>
-            <select class="form-control" id="ministerio" onChange="getSecretaria()" required></select>
+            <select class="form-control" id="ministerio" onChange="getSecretaria()"></select>
         </div>
     </div>
 
@@ -188,7 +186,7 @@
     <div class="row d-flex text-left">
         <div class="col-md-6 mb-3">
             <label for="secretaria"><i class="fas fa-map-marked-alt"></i>>>Secretaria</label>
-            <select class="form-control" id="secretaria" onChange="getSubSecretaria()" required></select>
+            <select class="form-control" id="secretaria" onChange="getSubSecretaria()"></select>
         </div>
     </div>
 </div>
@@ -197,7 +195,7 @@
     <div class="row d-flex text-left">
         <div class="col-md-6 mb-3">
             <label for="subsecretaria"><i class="fas fa-map-marked-alt"></i>>>SubSecretaria</label>
-            <select class="form-control" id="subsecretaria" onChange="getDirecciongral()" required></select>
+            <select class="form-control" id="subsecretaria" onChange="getDirecciongral()"></select>
         </div>
     </div>
 </div>
@@ -206,7 +204,7 @@
     <div class="row d-flex text-left">
         <div class="col-md-6 mb-3">
             <label for="direcciongral"><i class="fas fa-map-marked-alt"></i>>>Direcciongral</label>
-            <select class="form-control" id="direcciongral" onChange="getDireccion()" required></select>
+            <select class="form-control" id="direcciongral" onChange="getDireccion()"></select>
         </div>
     </div>
 </div>    
@@ -215,7 +213,7 @@
     <div class="row d-flex text-left">
         <div class="col-md-6 mb-3">
             <label for="direccion"><i class="fas fa-map-marked-alt"></i>>>Direccion</label>
-            <select class="form-control" id="direccion" onChange="getCoordinacion()" required></select>
+            <select class="form-control" id="direccion" onChange="getCoordinacion()"></select>
         </div>
     </div>
 </div>    
@@ -224,7 +222,7 @@
     <div class="row d-flex text-left">
         <div class="col-md-6 mb-3">
             <label for="coordinacion"><i class="fas fa-map-marked-alt"></i>>>Coordinacion</label>
-            <select class="form-control" id="coordinacion" name="coordinacion" required></select>
+            <select class="form-control" id="coordinacion"></select>
         </div>    
     </div>
 </div>      
@@ -256,19 +254,21 @@
       
 
        <div class="form-group">
-          <input class="btn btn-primary" type="submit" name="editar_usuario" value="Editar Perfil">
+          <input class="btn btn-primary" type="submit" name="editar_usuario" id="editar_usuario" value="Editar Perfil">
       </div>
-        <div class="form-group">
+        <!-- <div class="form-group">
           <input class="btn btn-primary" type="button" onClick="Setdata()" value="Prueba">
-      </div>
+      </div> -->
+
+      <input type="hidden" name="caja_valor" id="caja_valor" value="">
 
 </form>
-    <script>
+    <!-- <script>
      function Setdata(){
          var idd = $("#coordinacion>option:selected").attr("idd");
          alert(idd);
      }
-    </script>
+    </script> -->
             
             
             
