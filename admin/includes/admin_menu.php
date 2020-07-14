@@ -22,9 +22,9 @@
             <li>
                 <a href="./categorias.php"><i class="fa fa-tasks"></i> Categorias</a>
             </li>
-            <li>
+            <!-- <li>
                 <a href="comentarios.php"><i class="fa fa-fw fa-comments"></i>Comentarios</a>
-            </li>
+            </li> -->
             <!--si el usuario es el administrador entonces puede ver el modulo de usuarios y puede ver el listado de usuarios, agregar, editar y eliminar-->   
             <?php                        
             if(isset($_SESSION["rol"]) and $_SESSION["rol"]=="administrador"){
