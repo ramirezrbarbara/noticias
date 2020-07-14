@@ -88,7 +88,7 @@ function getSecretaria() {
 
                 $("#secretaria").append('<option value="">Elija una opción</option>');
                 for (i = 0; i < objData.length; i++) {
-                    $("#secretaria").append('<option value="' + objData[i].id + '">' + objData[i].descripcion + '</option>');
+                    $("#secretaria").append('<option value="' + objData[i].id + '" idd="' + objData[i].id + ministerio + '">' + objData[i].descripcion + '</option>');
                 }
 
             } else {
@@ -151,7 +151,7 @@ function getSubSecretaria() {
 
                 $("#subsecretaria").append('<option value="">Elija una opción</option>');
                 for (i = 0; i < objData.length; i++) {
-                    $("#subsecretaria").append('<option value="' + objData[i].id + '">' + objData[i].descripcion + '</option>');
+                    $("#subsecretaria").append('<option value="' + objData[i].id + '" idd="' + objData[i].id + ministerio + '">' + objData[i].descripcion + '</option>');
                 }
 
             } else {
@@ -209,7 +209,7 @@ function getDirecciongral() {
 
                 $("#direcciongral").append('<option value="">Elija una opción</option>');
                 for (i = 0; i < objData.length; i++) {
-                    $("#direcciongral").append('<option value="' + objData[i].id + '">' + objData[i].descripcion + '</option>');
+                    $("#direcciongral").append('<option value="' + objData[i].id + '" idd="' + objData[i].id + ministerio + '">' + objData[i].descripcion + '</option>');
                 }
 
             } else {
@@ -262,7 +262,7 @@ function getDireccion() {
 
                 $("#direccion").append('<option value="">Elija una opción</option>');
                 for (i = 0; i < objData.length; i++) {
-                    $("#direccion").append('<option value="' + objData[i].id + '">' + objData[i].descripcion + '</option>');
+                    $("#direccion").append('<option value="' + objData[i].id + '" idd="' + objData[i].id + ministerio + '">' + objData[i].descripcion + '</option>');
                 }
 
             } else {
@@ -310,7 +310,7 @@ function getCoordinacion() {
 
                 $("#coordinacion").append('<option value="">Elija una opción</option>');
                 for (i = 0; i < objData.length; i++) {
-                    $("#coordinacion").append('<option value="' + objData[i].id + '" idd="' + objData[i].id + ministerio +'">' + objData[i].descripcion + '</option>');
+                    $("#coordinacion").append('<option value="' + objData[i].id + '" idd="' + objData[i].id + ministerio + '">' + objData[i].descripcion + '</option>');
                 }
 
             } else {
@@ -320,6 +320,24 @@ function getCoordinacion() {
         .catch(error => {
             swal("Algo salió mal!", error, "error");
         });
+}
+
+function Setdata() {
+    var iddSec = $("#secretaria>option:selected").attr("idd");
+    var iddSub = $("#subsecretaria>option:selected").attr("idd");
+    var iddDgr = $("#direcciongral>option:selected").attr("idd");
+    var iddDir = $("#direccion>option:selected").attr("idd");
+    var iddCoo = $("#coordinacion>option:selected").attr("idd");
+  
+    // if (iddCoo != "") {
+    //     alert(idd);
+    // }else if (iddDir != "") {
+    //     alert(idd);
+    // }
+
+    alert(iddCoo);
+
+    //return ''iddCoo'';
 }
 
 getMinisterio();

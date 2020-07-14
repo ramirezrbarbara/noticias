@@ -451,7 +451,7 @@
           
       }
       
-      public function editar_perfil($id_usuario,$usuario,$password,$nombre,$apellido,$imagen,$rol){
+      public function editar_perfil($id_usuario,$usuario,$password,$nombre,$apellido,$imagen,$rol,$coordinacion){
            
           
            /*validamos que los campos no esten vacios*/
@@ -466,6 +466,7 @@
 
               $pass_encriptado= password_hash($password,PASSWORD_DEFAULT);
 
+              // $coordinacion=100;
            $sql="update usuarios set
            
              usuario=?,
@@ -473,7 +474,8 @@
              nombre=?,
              apellido=?,
              imagen='imagen',
-             rol=?
+             rol=?,
+             idd=?
              where 
              id_usuario=?
            
@@ -493,14 +495,23 @@
            
            
            $resultado= $this->db->prepare($sql);
-           
+
            $resultado->bindValue(1,$_POST["usuario"]);
            $resultado->bindValue(2,$pass_encriptado);
            $resultado->bindValue(3,$_POST["nombre"]);
            $resultado->bindValue(4,$_POST["apellido"]);
            //$resultado->bindValue(4,$entrada_imagen);
            $resultado->bindValue(5,$_POST["rol"]);
-           $resultado->bindValue(6,$_SESSION["id_usuario"]);
+           $resultado->bindValue(6,$coordinacion);
+           $resultado->bindValue(7,$_SESSION["id_usuario"]);
+           
+          //  $resultado->bindValue(1,$_POST["usuario"]);
+          //  $resultado->bindValue(2,$pass_encriptado);
+          //  $resultado->bindValue(3,$_POST["nombre"]);
+          //  $resultado->bindValue(4,$_POST["apellido"]);
+          //  //$resultado->bindValue(4,$entrada_imagen);
+          //  $resultado->bindValue(5,$_POST["rol"]);
+          //  $resultado->bindValue(6,$_SESSION["id_usuario"]);          
            
              if(!$resultado->execute()){
                   

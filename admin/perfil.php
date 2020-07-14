@@ -47,7 +47,10 @@
           $nombre=$_POST["nombre"]; 
           $apellido=$_POST["apellido"];    
           $imagen="imagen";
-          $rol=$_POST["rol"];  
+          $rol=$_POST["rol"];
+          //$coordinacion=$_POST["coordinacion"];
+          $coordinacion=getAttribute("coordinacion");
+          
            
           /*$usuario_imagen=$_FILES["entrada_imagen"]["name"];
           $usuario_imagen_temp=$_FILES["entrada_imagen"]["tmp_name"]; 
@@ -56,13 +59,13 @@
            /*validamos si el campo de la imagen es vacio se envia la misma imagen del registro de la bd*/
              /*if(empty($usuario_imagen)){
                  
-                  $usuario_imagen= $_POST["archivo"];  
+                  $usuario_imagen= $_POST["archivo"];
                 
              }*/             
 
            
             /*si se envia el formulario se edita el usuario*/
-           $usuarios->editar_perfil($id_usuario,$usuario,$pass_encriptado,$nombre,$apellido,$imagen,$rol);
+           $usuarios->editar_perfil($id_usuario,$usuario,$pass_encriptado,$nombre,$apellido,$imagen,$rol,$coordinacion);
        }
 
 
@@ -221,7 +224,7 @@
     <div class="row d-flex text-left">
         <div class="col-md-6 mb-3">
             <label for="coordinacion"><i class="fas fa-map-marked-alt"></i>>>Coordinacion</label>
-            <select class="form-control" id="coordinacion" required></select>
+            <select class="form-control" id="coordinacion" name="coordinacion" required></select>
         </div>    
     </div>
 </div>      
@@ -256,12 +259,12 @@
           <input class="btn btn-primary" type="submit" name="editar_usuario" value="Editar Perfil">
       </div>
         <div class="form-group">
-          <input class="btn btn-primary" type="button" onclick="Setdata()" value="Prueba">
+          <input class="btn btn-primary" type="button" onClick="Setdata()" value="Prueba">
       </div>
 
 </form>
     <script>
-     function Setdata (){
+     function Setdata(){
          var idd = $("#coordinacion>option:selected").attr("idd");
          alert(idd);
      }
