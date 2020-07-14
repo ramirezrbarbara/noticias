@@ -181,10 +181,6 @@
         </div>
     </div>
 
-    <!-- <div id="secretaria"></div> -->
-    <!-- <div class="auto" id="auto" style="display: none">
-  Oculta
-</div> -->
 <div class="osecretaria" id="osecretaria" style="display: none">
     <div class="row d-flex text-left">
         <div class="col-md-6 mb-3">
@@ -225,7 +221,7 @@
     <div class="row d-flex text-left">
         <div class="col-md-6 mb-3">
             <label for="coordinacion"><i class="fas fa-map-marked-alt"></i>>>Coordinacion</label>
-            <select class="form-control" id="coordinacion" onChange="getCoord()" required></select>
+            <select class="form-control" id="coordinacion" required></select>
         </div>    
     </div>
 </div>      
@@ -259,10 +255,17 @@
        <div class="form-group">
           <input class="btn btn-primary" type="submit" name="editar_usuario" value="Editar Perfil">
       </div>
-
+        <div class="form-group">
+          <input class="btn btn-primary" type="button" onclick="Setdata()" value="Prueba">
+      </div>
 
 </form>
-    
+    <script>
+     function Setdata (){
+         var idd = $("#coordinacion>option:selected").attr("idd");
+         alert(idd);
+     }
+    </script>
             
             
             

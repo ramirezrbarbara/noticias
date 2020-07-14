@@ -70,7 +70,7 @@
           <input type="text" class="form-control" name="entrada_titulo">
       </div>
 
-         <!-- <div class="form-group">
+     <div class="form-group">
             <label for="categoria">Categoría</label>
        
          <select name="entrada_categoria" id="">
@@ -78,19 +78,24 @@
           
           <?php  
            
-        //    $cat = $categoria->get_categorias();
+            $cat = $categoria->get_categorias();
               
-        //        for($i=0;$i<count($cat);$i++){
+                for($i=0;$i<count($cat);$i++){
+                    if ($cat[$i]["id_categoria"] == '22'){
+                        $select='selected';
+                    }else{
+                        $select='';
+                    }
            ?>
           
-              <option value="<?php // echo $cat[$i]["id_categoria"]?>"><?php // echo $cat[$i]["titulo"]?></option>
+              <option value="<?php echo $cat[$i]["id_categoria"]?>" <?php echo $select;?>><?php echo $cat[$i]["titulo"]?></option>              
           
-          <?php //} ?>
+          <?php } ?>
 
            
       </select>
       
-      </div> -->
+      </div>
 
 
        <div class="form-group">
