@@ -48,7 +48,8 @@
           $apellido=$_POST["apellido"];
           $imagen="imagen";
           $rol=$_POST["rol"];
-          $idd=$_POST["caja_valor"];
+          $idd=$_POST["iddValor"];
+          $iddDes=$_POST["iddDesc"];
            
           /*$usuario_imagen=$_FILES["entrada_imagen"]["name"];
           $usuario_imagen_temp=$_FILES["entrada_imagen"]["tmp_name"]; 
@@ -63,7 +64,7 @@
 
            
             /*si se envia el formulario se edita el usuario*/
-           $usuarios->editar_perfil($id_usuario,$usuario,$pass_encriptado,$nombre,$apellido,$imagen,$rol,$idd);
+           $usuarios->editar_perfil($id_usuario,$usuario,$pass_encriptado,$nombre,$apellido,$imagen,$rol,$idd,$iddDes);
        }
 
 
@@ -174,7 +175,13 @@
       </div>
 
     <!-- CATEGORIAS ORGANIGRAMA --> 
-    <div>Categoría</div><br>
+    <div>Categoría</div><br>   
+    <div class="row d-flex text-left">
+        <div class="col-md-6 mb-3">        
+            <input type="email" value="<?php echo $datos[0]["idddesc"]?>" class="form-control" name="correo" disabled>
+        </div>
+    </div>
+
     <div class="row d-flex text-left">
         <div class="col-md-6 mb-3">
             <label for="ministerio"><i class="fas fa-map-marked-alt"></i>>>Ministerio</label>
@@ -182,50 +189,50 @@
         </div>
     </div>
 
-<div class="osecretaria" id="osecretaria" style="display: none">
-    <div class="row d-flex text-left">
-        <div class="col-md-6 mb-3">
-            <label for="secretaria"><i class="fas fa-map-marked-alt"></i>>>Secretaria</label>
-            <select class="form-control" id="secretaria" onChange="getSubSecretaria()"></select>
+    <div class="osecretaria" id="osecretaria" style="display: none">
+        <div class="row d-flex text-left">
+            <div class="col-md-6 mb-3">
+                <label for="secretaria"><i class="fas fa-map-marked-alt"></i>>>Secretaria</label>
+                <select class="form-control" id="secretaria" onChange="getSubSecretaria()"></select>
+            </div>
         </div>
     </div>
-</div>
-    
-<div class="osubsecretaria" id="osubsecretaria" style="display: none">
-    <div class="row d-flex text-left">
-        <div class="col-md-6 mb-3">
-            <label for="subsecretaria"><i class="fas fa-map-marked-alt"></i>>>SubSecretaria</label>
-            <select class="form-control" id="subsecretaria" onChange="getDirecciongral()"></select>
+        
+    <div class="osubsecretaria" id="osubsecretaria" style="display: none">
+        <div class="row d-flex text-left">
+            <div class="col-md-6 mb-3">
+                <label for="subsecretaria"><i class="fas fa-map-marked-alt"></i>>>SubSecretaria</label>
+                <select class="form-control" id="subsecretaria" onChange="getDirecciongral()"></select>
+            </div>
         </div>
     </div>
-</div>
 
-<div class="odirecciongral" id="odirecciongral" style="display: none">
-    <div class="row d-flex text-left">
-        <div class="col-md-6 mb-3">
-            <label for="direcciongral"><i class="fas fa-map-marked-alt"></i>>>Direcciongral</label>
-            <select class="form-control" id="direcciongral" onChange="getDireccion()"></select>
+    <div class="odirecciongral" id="odirecciongral" style="display: none">
+        <div class="row d-flex text-left">
+            <div class="col-md-6 mb-3">
+                <label for="direcciongral"><i class="fas fa-map-marked-alt"></i>>>Direcciongral</label>
+                <select class="form-control" id="direcciongral" onChange="getDireccion()"></select>
+            </div>
         </div>
-    </div>
-</div>    
+    </div>    
 
-<div class="odireccion" id="odireccion" style="display: none">
-    <div class="row d-flex text-left">
-        <div class="col-md-6 mb-3">
-            <label for="direccion"><i class="fas fa-map-marked-alt"></i>>>Direccion</label>
-            <select class="form-control" id="direccion" onChange="getCoordinacion()"></select>
+    <div class="odireccion" id="odireccion" style="display: none">
+        <div class="row d-flex text-left">
+            <div class="col-md-6 mb-3">
+                <label for="direccion"><i class="fas fa-map-marked-alt"></i>>>Direccion</label>
+                <select class="form-control" id="direccion" onChange="getCoordinacion()"></select>
+            </div>
         </div>
-    </div>
-</div>    
-    
-<div class="ocoordinacion" id="ocoordinacion" style="display: none">
-    <div class="row d-flex text-left">
-        <div class="col-md-6 mb-3">
-            <label for="coordinacion"><i class="fas fa-map-marked-alt"></i>>>Coordinacion</label>
-            <select class="form-control" id="coordinacion"></select>
-        </div>    
-    </div>
-</div>      
+    </div>    
+        
+    <div class="ocoordinacion" id="ocoordinacion" style="display: none">
+        <div class="row d-flex text-left">
+            <div class="col-md-6 mb-3">
+                <label for="coordinacion"><i class="fas fa-map-marked-alt"></i>>>Coordinacion</label>
+                <select class="form-control" id="coordinacion"></select>
+            </div>    
+        </div>
+    </div>      
     <!-- Fin categoria -->
       
 <!--
@@ -260,7 +267,8 @@
           <input class="btn btn-primary" type="button" onClick="Setdata()" value="Prueba">
       </div> -->
 
-      <input type="hidden" name="caja_valor" id="caja_valor" value="">
+      <input type="hidden" name="iddValor" id="iddValor" value="">
+      <input type="hidden" name="iddDesc" id="iddDesc" value="">
 
 </form>
     <!-- <script>

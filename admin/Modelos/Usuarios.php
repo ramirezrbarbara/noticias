@@ -451,7 +451,7 @@
           
       }
       
-      public function editar_perfil($id_usuario,$usuario,$password,$nombre,$apellido,$imagen,$rol,$idd){
+      public function editar_perfil($id_usuario,$usuario,$password,$nombre,$apellido,$imagen,$rol,$idd,$iddDes){
            
           
            /*validamos que los campos no esten vacios*/
@@ -474,7 +474,8 @@
              apellido=?,
              imagen='imagen',
              rol=?,
-             idd=?
+             idd=?,
+             idddesc=?
              where 
              id_usuario=?
            
@@ -502,7 +503,8 @@
            //$resultado->bindValue(4,$entrada_imagen);
            $resultado->bindValue(5,$_POST["rol"]);
            $resultado->bindValue(6,$idd);
-           $resultado->bindValue(7,$_SESSION["id_usuario"]);
+           $resultado->bindValue(7,$iddDes);
+           $resultado->bindValue(8,$_SESSION["id_usuario"]);
            
           //  $resultado->bindValue(1,$_POST["usuario"]);
           //  $resultado->bindValue(2,$pass_encriptado);

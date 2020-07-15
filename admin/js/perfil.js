@@ -323,27 +323,40 @@ function getCoordinacion() {
 }
 
 $('#editar_usuario').click(function () {
-    $("#caja_valor").val("");
+    $("#iddValor").val("");
+
+    //Obtengo el dato IDD del select option
     var iddSec = $("#secretaria>option:selected").attr("idd");
     var iddSub = $("#subsecretaria>option:selected").attr("idd");
     var iddDgr = $("#direcciongral>option:selected").attr("idd");
     var iddDir = $("#direccion>option:selected").attr("idd");   
     var iddCoo = $("#coordinacion>option:selected").attr("idd");
 
-    // alert('Coor:' + iddCoo);
-    // alert('Dir:' + iddDir);
-    // alert('Dgr:' + iddDgr);
+    // alert($('select[id="coordinacion"] option:selected').text());
+    // alert($("#coordinacion>option:selected").text());
+    //Obtengo la descripcion del select option
+    var iddSecDes = $("#secretaria>option:selected").text();
+    var iddSubDes = $("#subsecretaria>option:selected").text();
+    var iddDgrDes = $("#direcciongral>option:selected").text();
+    var iddDirDes = $("#direccion>option:selected").text();
+    var iddCooDes = $("#coordinacion>option:selected").text();
+
 
     if (iddCoo != null) {
-        $("#caja_valor").val(iddCoo);
+        $("#iddValor").val(iddCoo);
+        $("#iddDesc").val(iddCooDes);
     } else if (iddDir != null) {        
-        $("#caja_valor").val(iddDir);
+        $("#iddValor").val(iddDir);
+        $("#iddDesc").val(iddDirDes);
     } else if (iddDgr != null) {
-        $("#caja_valor").val(iddDgr);
+        $("#iddValor").val(iddDgr);
+        $("#iddDesc").val(iddDgrDes);
     } else if (iddSub != null) {
-        $("#caja_valor").val(iddSub);
+        $("#iddValor").val(iddSub);
+        $("#iddDesc").val(iddSubDes);
     } else if (iddSec != null) {
-        $("#caja_valor").val(iddSec);
+        $("#iddValor").val(iddSec);
+        $("#iddDesc").val(iddSecDes);
     }
 
 }); 
