@@ -228,7 +228,7 @@
 
                           /*se edita el registro*/
                           if($resultado->rowCount()>0){
-
+                               
                                header("Location:usuarios.php?accion=edit_usuario&id_usuario=$id_usuario&m=3");   
 
                           }else{
@@ -522,7 +522,9 @@
                   
                   /*se edita el registro*/
                   if($resultado->rowCount()>0){
-                      
+                  
+                      //  $_SESSION["idd"] = $idd;
+                      //  $_SESSION["idddesc"] = $idd;
                        header("Location:perfil.php?m=3");   
                   
                   }else{

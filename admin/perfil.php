@@ -254,7 +254,8 @@
       
       <div class="form-group">
          <label for="post_content">Password</label>
-          <input type="password" value="value="<?php echo $datos[0]["password"]?>"" class="form-control" name="password">
+          <!-- <input type="password" value="value="<?php echo $datos[0]["password"]?>"" class="form-control" name="password"> -->
+          <input type="password" value="<?php echo $datos[0]["password"]?>" class="form-control" name="password">
       </div>
       
       
