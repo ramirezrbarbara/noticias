@@ -73,19 +73,26 @@
      <div class="form-group">
             <label for="categoria">Categoría</label>
        
-         <select name="entrada_categoria" id="">
+         <select name="entrada_categoria" id="" disabled>
           <option value="">seleccione</option>
           
           <?php  
-           
+                
+            if(isset($_SESSION["id_usuario"])){
+                
+                $id_usuario= $_SESSION["id_usuario"];
+                
+                $datos= $usuarios->get_perfil_por_id($id_usuario);
+            }
+            
             $cat = $categoria->get_categorias();
               
-                for($i=0;$i<count($cat);$i++){
-                    if ($cat[$i]["id_categoria"] == '22'){
-                        $select='selected';
-                    }else{
-                        $select='';
-                    }
+            for($i=0;$i<count($cat);$i++){                    
+                if ($cat[$i]["idd"] == $datos[0]["idd"] && $cat[$i]["titulo"] == $datos[0]["idddesc"]){                        
+                    $select='selected';
+                }else{
+                    $select='';
+                }
            ?>
           
               <option value="<?php echo $cat[$i]["id_categoria"]?>" <?php echo $select;?>><?php echo $cat[$i]["titulo"]?></option>              
@@ -112,11 +119,13 @@
       
       </div>
 
+        <?php //echo '<h4>'.$_SESSION['idd'].'-'.$_SESSION['idddesc'].'</h4>'; ?>
+
         <!-- Asigno la categoria que viene de la base de datos -->
-        <div class="form-group">
+        <!-- <div class="form-group">
             <label>Categoría</label>
-            <input type="text" class="form-control" value="<?php echo $_SESSION['correo'];?>" disabled>
-        </div>
+            <input type="text" class="form-control" value="<?php //echo $_SESSION['correo'];?>" disabled>
+        </div> -->
 
        <div class="form-group">
        <label for="status">Status de la entrada</label>

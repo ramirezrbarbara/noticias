@@ -11,8 +11,7 @@
           $this->db=Conectar::conexion();
           $this->categorias=array();
           
-      } 
-      
+      }       
       
       public function get_categorias(){
           

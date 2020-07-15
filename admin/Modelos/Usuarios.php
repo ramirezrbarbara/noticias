@@ -907,6 +907,8 @@
                               $nombre_bd = $reg["nombre"];
                               $correo_bd = $reg["correo"];
                               $rol_bd = $reg["rol"];
+                              $idd_bd = $reg["idd"];
+                              $idddesc_bd = $reg["idddesc"];
                           }
                           
                            /*verificamos que el password que ingresa el usuario sea igual al de la tabla usuarios*/
@@ -919,6 +921,8 @@
                                  $_SESSION["nombre"]=$nombre_bd;
                                  $_SESSION["correo"]=$correo_bd;
                                  $_SESSION["rol"]=$rol_bd;
+                                 $_SESSION["idd"]=$idd_bd;
+                                 $_SESSION["idddesc"]=$idddesc_bd;
                                
                                  header("Location:admin/index.php");
                           
