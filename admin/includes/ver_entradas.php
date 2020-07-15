@@ -128,8 +128,12 @@ if(isset($_GET["id_usuario"])){
         
         <tbody  style="text-align:center">                            
             <?php 
-            
-            for($i=0;$i<count($datos);$i++){?>
+
+            $iddCat=$categoria->get_iddCategoria($_SESSION["id_usuario"]);
+
+            for($i=0;$i<count($datos);$i++){
+                if ($datos[$i]["id_categoria_entrada"] == $iddCat) {
+                ?>
                 <tr>
                     <!-- <td><input class='checkBoxes' type='checkbox' name='checkBoxArray[]' value='<?php echo $datos[$i]["id_entrada"];?>'></td> -->
                     <!-- <td><?php echo $datos[$i]["id_entrada"];?></td> -->
@@ -158,7 +162,9 @@ if(isset($_GET["id_usuario"])){
                     </div></td>
                     
                 </tr>
-            <?php }?>            
+
+            <?php }
+            }?>            
         </tbody>
     </table>
 </form>

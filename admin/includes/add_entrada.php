@@ -70,13 +70,10 @@
           <input type="text" class="form-control" name="entrada_titulo">
       </div>
 
-     <div class="form-group">
-            <label for="categoria">Categoría</label>
-       
-         <select name="entrada_categoria" id="" disabled>
-          <option value="">seleccione</option>
-          
-          <?php  
+    <div class="form-group">
+        <label for="entrada_categoria">Categoría</label>
+
+                  <?php  
                 
             if(isset($_SESSION["id_usuario"])){
                 
@@ -90,20 +87,15 @@
             for($i=0;$i<count($cat);$i++){                    
                 if ($cat[$i]["idd"] == $datos[0]["idd"] && $cat[$i]["titulo"] == $datos[0]["idddesc"]){                        
                     $select='selected';
+                    echo '<input type="hidden" name="entrada_categoria" value="'.$cat[$i]["id_categoria"].'">';
+                    echo '<input type="text" class="form-control" name="display_categoria" value="'.$cat[$i]["titulo"].'" readonly>'; 
                 }else{
                     $select='';
                 }
+            }
            ?>
-          
-              <option value="<?php echo $cat[$i]["id_categoria"]?>" <?php echo $select;?>><?php echo $cat[$i]["titulo"]?></option>              
-          
-          <?php } ?>
-
-           
-      </select>
-      
-      </div>
-
+        
+    </div>
 
        <div class="form-group">
        <label for="usuarios">Usuario</label>

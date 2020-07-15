@@ -3,8 +3,7 @@
   class Categorias extends Conectar{
       
      private $db;
-     private $categorias;
-      
+     private $categorias;     
       
       public function __construct(){
           
@@ -299,6 +298,33 @@
                       }
              
          }
+
+        public function get_iddCategoria($id_Usuario){ 
+                    
+            $sql="Select A.id_categoria from categorias A Join usuarios B on B.idd = A.idd And B.idddesc = A.titulo Where B.id_usuario=:id_Usuario"; 
+                                    
+        
+            $resultado=$this->db->prepare($sql);
+
+            $resultado->bindValue(':id_Usuario',$id_Usuario);        
+                                    
+            if(!$resultado->execute()){
+                                           
+                header("Location:entradas.php?m=2");
+            
+            }else{
+                
+                if($resultado->rowCount()>0){
+                    
+                    while($reg=$resultado->fetch()){
+                                                
+                        $iddcategorias=$reg["id_categoria"];
+                                                
+                        return $iddcategorias;
+                    }
+                }
+            }
+        }
       
         public function get_numero_categorias(){
           

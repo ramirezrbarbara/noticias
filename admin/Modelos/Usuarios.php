@@ -228,7 +228,7 @@
 
                           /*se edita el registro*/
                           if($resultado->rowCount()>0){
-
+                               
                                header("Location:usuarios.php?accion=edit_usuario&id_usuario=$id_usuario&m=3");   
 
                           }else{
