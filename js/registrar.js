@@ -3,7 +3,6 @@ function getMinisterio() {
     $("#ministerio").empty();
 
     fetch('https://sistemas.mininterior.gob.ar/api/organigrama/api/organigrama/', {
-
         method: "GET",
         headers: new Headers({
             'Content-Type': 'application/x-www-form-urlencoded',
@@ -12,12 +11,15 @@ function getMinisterio() {
         .then(resp => resp.json())
         .then(respObj => {
 
-            if (respObj.status == 0) {
+            if (respObj.status == 0) {                                   
+                // var intro = document.getElementById('osecretaria');
+                // intro.style.display = 'block';
+                // $("#osecretaria").css("display", "block");
                 var objData = JSON.parse(respObj.messege);
 
                 $("#ministerio").append('<option value="">Elija una opción</option>');
                 for (i = 0; i < objData.length; i++) {
-                    $("#ministerio").append('<option value="' + objData[i].id + '">' + objData[i].ministerio + '</option>');
+                    $("#ministerio").append('<option value="' + objData[i].id + '">' + objData[i].ministerio + '</option>');                    
                 }
 
             } else {
@@ -37,7 +39,21 @@ function getSecretaria() {
     $("#coordinacion").empty();
 
     var ministerio = $("#ministerio").val();
-    // alert(ministerio);
+    if (ministerio != null) {
+        $("#osecretaria").css("display", "block");     
+        $("#osubsecretaria").css("display", "none");
+        $("#odirecciongral").css("display", "none");
+        $("#odireccion").css("display", "none");
+        $("#ocoordinacion").css("display", "none");
+    } else {
+        ministerio = 0;
+        $("#osecretaria").css("display", "none");
+        $("#osubsecretaria").css("display", "none");
+        $("#odirecciongral").css("display", "none");
+        $("#odireccion").css("display", "none");
+        $("#ocoordinacion").css("display", "none");
+    }
+      
     fetch('https://sistemas.mininterior.gob.ar/api/organigrama/api/organigrama/secretarias/' + ministerio, {
         method: "GET",
         headers: new Headers({
@@ -46,17 +62,34 @@ function getSecretaria() {
     })
         .then(resp => resp.json())
         .then(respObj => {
-
-            if (respObj.status == 0) {
+            //console.log(respObj.messege);
+            if (respObj.status == 0) {                
                 var objData = JSON.parse(respObj.messege);
-                if(objData.length>0){ 
-                    document.getElementById("secretariaDiv").setAttribute("style", "visibility:visible");
-                    $("#secretaria").append('<option value="">Elija una opción</option>');
-                    for (i = 0; i < objData.length; i++) {
-                        $("#secretaria").append('<option value="' + objData[i].id + '">' + objData[i].descripcion + '</option>');
-                    }
+                //alert(respObj.messege.length);
+                if (jQuery.isEmptyObject(objData)) {
+                    $("#osecretaria").css("display", "none");
+                    $("#osubsecretaria").css("display", "none");
+                    $("#odirecciongral").css("display", "none");
+                    $("#odireccion").css("display", "none");
+                    $("#ocoordinacion").css("display", "none");
+                    return false;
                 }
-                
+
+                // var ministerio = $("#ministerio").val();
+                // if (ministerio != "") {
+                $("#osecretaria").css("display", "block");
+                // } else {
+                //     $("#osecretaria").css("display", "none");
+                //     $("#osubsecretaria").css("display", "none");
+                //     $("#odirecciongral").css("display", "none");
+                //     $("#odireccion").css("display", "none");
+                //     $("#ocoordinacion").css("display", "none");
+                // }
+
+                $("#secretaria").append('<option value="">Elija una opción</option>');
+                for (i = 0; i < objData.length; i++) {
+                    $("#secretaria").append('<option value="' + objData[i].id + '" idd="' + objData[i].id + ministerio + '">' + objData[i].descripcion + '</option>');
+                }
 
             } else {
                 swal("Algo salió mal!", respObj.messege, "error");
@@ -67,14 +100,25 @@ function getSecretaria() {
         });
 }
 
-function getSubSecretaria() {
+function getSubSecretaria() {    
     $("#subsecretaria").empty();
     $("#direcciongral").empty();
     $("#direccion").empty();
     $("#coordinacion").empty();
 
     var ministerio = $("#secretaria").val();
-    // alert(ministerio);
+    if (ministerio != "") {
+        $("#osubsecretaria").css("display", "block");
+        $("#odirecciongral").css("display", "none");
+        $("#odireccion").css("display", "none");
+        $("#ocoordinacion").css("display", "none");
+    } else {
+        ministerio = 0;
+        $("#osubsecretaria").css("display", "none");
+        $("#odirecciongral").css("display", "none");
+        $("#odireccion").css("display", "none");
+        $("#ocoordinacion").css("display", "none");
+    }
 
     fetch('https://sistemas.mininterior.gob.ar/api/organigrama/api/organigrama/subsecretarias/' + ministerio, {
         method: "GET",
@@ -85,15 +129,29 @@ function getSubSecretaria() {
         .then(resp => resp.json())
         .then(respObj => {
 
-            if (respObj.status == 0) {
+            if (respObj.status == 0) {                
+                var objData = JSON.parse(respObj.messege);                
+                if (jQuery.isEmptyObject(objData)) {
+                    $("#osubsecretaria").css("display", "none");
+                    $("#odirecciongral").css("display", "none");
+                    $("#odireccion").css("display", "none");
+                    $("#ocoordinacion").css("display", "none");
+                    return false;
+                }
+                
+                // var ministerio = $("#secretaria").val();
+                // if (ministerio != "") {
+                $("#osubsecretaria").css("display", "block");
+                // } else {                      
+                //     $("#osubsecretaria").css("display", "none");
+                //     $("#odirecciongral").css("display", "none");
+                //     $("#odireccion").css("display", "none");
+                //     $("#ocoordinacion").css("display", "none");
+                // }
 
-                var objData = JSON.parse(respObj.messege);
-                if(objData.length>0){ 
-                    document.getElementById("subsecretariaDiv").setAttribute("style", "visibility:visible;");
-                    $("#subsecretaria").append('<option value="">Elija una opción</option>');
-                    for (i = 0; i < objData.length; i++) {
-                        $("#subsecretaria").append('<option value="' + objData[i].id + '">' + objData[i].descripcion + '</option>');
-                    }
+                $("#subsecretaria").append('<option value="">Elija una opción</option>');
+                for (i = 0; i < objData.length; i++) {
+                    $("#subsecretaria").append('<option value="' + objData[i].id + '" idd="' + objData[i].id + ministerio + '">' + objData[i].descripcion + '</option>');
                 }
 
             } else {
@@ -105,14 +163,23 @@ function getSubSecretaria() {
         });
 }
 
-function getDirecciongral() {
+function getDirecciongral() {    
     $("#direcciongral").empty();
     $("#direccion").empty();
     $("#coordinacion").empty();
 
-    var ministerio = $("#subsecretaria").val();
-    // alert(ministerio);
-
+    var ministerio = $("#subsecretaria").val();    
+    if (ministerio != "") {
+        $("#odirecciongral").css("display", "block");
+        $("#odireccion").css("display", "none");
+        $("#ocoordinacion").css("display", "none");
+    } else {
+        ministerio = 0;
+        $("#odirecciongral").css("display", "none");
+        $("#odireccion").css("display", "none");
+        $("#ocoordinacion").css("display", "none");
+    }
+    
     fetch('https://sistemas.mininterior.gob.ar/api/organigrama/api/organigrama/direcciongral/' + ministerio, {
         method: "GET",
         headers: new Headers({
@@ -122,14 +189,27 @@ function getDirecciongral() {
         .then(resp => resp.json())
         .then(respObj => {
 
-            if (respObj.status == 0) {
-                if(objData.length>0){ 
-                    document.getElementById("direcciongralDiv").setAttribute("style", "visibility:visible;");
-                    var objData = JSON.parse(respObj.messege);
-                    $("#direcciongral").append('<option value="">Elija una opción</option>');
-                    for (i = 0; i < objData.length; i++) {
-                        $("#direcciongral").append('<option value="' + objData[i].id + '">' + objData[i].descripcion + '</option>');
-                    }
+            if (respObj.status == 0) {                
+                var objData = JSON.parse(respObj.messege);                
+                if (jQuery.isEmptyObject(objData)) {
+                    $("#odirecciongral").css("display", "none");
+                    $("#odireccion").css("display", "none");
+                    $("#ocoordinacion").css("display", "none");
+                    return false;
+                }
+                
+                // var ministerio = $("#secretaria").val();
+                // if (objData != "") {
+                $("#odirecciongral").css("display", "block");
+                // } else {                    
+                //     $("#odirecciongral").css("display", "none");
+                //     $("#odireccion").css("display", "none");
+                //     $("#ocoordinacion").css("display", "none");
+                // }
+
+                $("#direcciongral").append('<option value="">Elija una opción</option>');
+                for (i = 0; i < objData.length; i++) {
+                    $("#direcciongral").append('<option value="' + objData[i].id + '" idd="' + objData[i].id + ministerio + '">' + objData[i].descripcion + '</option>');
                 }
 
             } else {
@@ -146,8 +226,15 @@ function getDireccion() {
     $("#coordinacion").empty();
 
     var ministerio = $("#direcciongral").val();
+    if (ministerio != "") {
+        $("#odireccion").css("display", "block");
+        $("#ocoordinacion").css("display", "none");
+    } else {
+        ministerio = 0;
+        $("#odireccion").css("display", "none");
+        $("#ocoordinacion").css("display", "none");
+    }
 
-    // alert(ministerio);
     fetch('https://sistemas.mininterior.gob.ar/api/organigrama/api/organigrama/direccion/' + ministerio, {
         method: "GET",
         headers: new Headers({
@@ -157,14 +244,25 @@ function getDireccion() {
         .then(resp => resp.json())
         .then(respObj => {
 
-            if (respObj.status == 0) {
-                var objData = JSON.parse(respObj.messege);
-                if(objData.length>0){ 
-                    document.getElementById("direccionDiv").setAttribute("style", "visibility:visible;");
-                    $("#direccion").append('<option value="">Elija una opción</option>');
-                    for (i = 0; i < objData.length; i++) {
-                        $("#direccion").append('<option value="' + objData[i].id + '">' + objData[i].descripcion + '</option>');
-                    }
+            if (respObj.status == 0) {      
+                var objData = JSON.parse(respObj.messege);            
+                if (jQuery.isEmptyObject(objData)) {
+                    $("#odireccion").css("display", "none");
+                    $("#ocoordinacion").css("display", "none");
+                    return false;
+                }
+
+                // var ministerio = $("#direcciongral").val();
+                // if (objData != "") {
+                $("#odireccion").css("display", "block");
+                // } else {
+                //     $("#odireccion").css("display", "none");
+                //     $("#ocoordinacion").css("display", "none");
+                // }
+
+                $("#direccion").append('<option value="">Elija una opción</option>');
+                for (i = 0; i < objData.length; i++) {
+                    $("#direccion").append('<option value="' + objData[i].id + '" idd="' + objData[i].id + ministerio + '">' + objData[i].descripcion + '</option>');
                 }
 
             } else {
@@ -180,8 +278,13 @@ function getCoordinacion() {
     $("#coordinacion").empty();
 
     var ministerio = $("#direccion").val();
-
-    // alert(ministerio);
+    if (ministerio != "") {
+        $("#ocoordinacion").css("display", "block");
+    } else {
+        ministerio = 0;
+        $("#ocoordinacion").css("display", "none");
+    }
+    
     fetch('https://sistemas.mininterior.gob.ar/api/organigrama/api/organigrama/coordinaciones/' + ministerio, {
         method: "GET",
         headers: new Headers({
@@ -192,14 +295,22 @@ function getCoordinacion() {
         .then(respObj => {
 
             if (respObj.status == 0) {
+                var objData = JSON.parse(respObj.messege);                                
+                if (jQuery.isEmptyObject(objData)) {
+                    $("#ocoordinacion").css("display", "none");
+                    return false;
+                }
 
-                var objData = JSON.parse(respObj.messege);
-                if(objData.length>0){ 
-                    document.getElementById("coordinacionDiv").setAttribute("style", "visibility:visible;");
-                    $("#coordinacion").append('<option value="">Elija una opción</option>');
-                    for (i = 0; i < objData.length; i++) {
-                        $("#coordinacion").append('<option value="' + objData[i].id + '">' + objData[i].descripcion + '</option>');
-                    }
+                // var ministerio = $("#direccion").val();            
+                // if (objData != "") {
+                $("#ocoordinacion").css("display", "block");
+                // } else {
+                //     $("#ocoordinacion").css("display", "none");
+                // }
+
+                $("#coordinacion").append('<option value="">Elija una opción</option>');
+                for (i = 0; i < objData.length; i++) {
+                    $("#coordinacion").append('<option value="' + objData[i].id + '" idd="' + objData[i].id + ministerio + '">' + objData[i].descripcion + '</option>');
                 }
 
             } else {
@@ -210,5 +321,44 @@ function getCoordinacion() {
             swal("Algo salió mal!", error, "error");
         });
 }
+
+$('#registrar_usuario').click(function () {
+    $("#iddValor").val("");
+
+    //Obtengo el dato IDD del select option
+    var iddSec = $("#secretaria>option:selected").attr("idd");
+    var iddSub = $("#subsecretaria>option:selected").attr("idd");
+    var iddDgr = $("#direcciongral>option:selected").attr("idd");
+    var iddDir = $("#direccion>option:selected").attr("idd");   
+    var iddCoo = $("#coordinacion>option:selected").attr("idd");
+
+    // alert($('select[id="coordinacion"] option:selected').text());
+    // alert($("#coordinacion>option:selected").text());
+    //Obtengo la descripcion del select option
+    var iddSecDes = $("#secretaria>option:selected").text();
+    var iddSubDes = $("#subsecretaria>option:selected").text();
+    var iddDgrDes = $("#direcciongral>option:selected").text();
+    var iddDirDes = $("#direccion>option:selected").text();
+    var iddCooDes = $("#coordinacion>option:selected").text();
+
+
+    if (iddCoo != null) {
+        $("#iddValor").val(iddCoo);
+        $("#iddDesc").val(iddCooDes);
+    } else if (iddDir != null) {        
+        $("#iddValor").val(iddDir);
+        $("#iddDesc").val(iddDirDes);
+    } else if (iddDgr != null) {
+        $("#iddValor").val(iddDgr);
+        $("#iddDesc").val(iddDgrDes);
+    } else if (iddSub != null) {
+        $("#iddValor").val(iddSub);
+        $("#iddDesc").val(iddSubDes);
+    } else if (iddSec != null) {
+        $("#iddValor").val(iddSec);
+        $("#iddDesc").val(iddSecDes);
+    }
+
+}); 
 
 getMinisterio();

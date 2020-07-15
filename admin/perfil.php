@@ -40,9 +40,9 @@
           $usuario=$_POST["usuario"];
            
           /*encriptamos el password*/
-          $password=$_POST["password"];
+            //   $password=$_POST["password"];
 
-          $pass_encriptado= password_hash($password,PASSWORD_DEFAULT);   
+            //   $pass_encriptado= password_hash($password,PASSWORD_DEFAULT);   
            
           $nombre=$_POST["nombre"]; 
           $apellido=$_POST["apellido"];
@@ -50,22 +50,35 @@
           $rol=$_POST["rol"];
           $idd=$_POST["iddValor"];
           $iddDes=$_POST["iddDesc"];
-           
-          /*$usuario_imagen=$_FILES["entrada_imagen"]["name"];
-          $usuario_imagen_temp=$_FILES["entrada_imagen"]["tmp_name"]; 
-          move_uploaded_file($usuario_imagen_temp,"../images/$usuario_imagen");*/
-           
-           /*validamos si el campo de la imagen es vacio se envia la misma imagen del registro de la bd*/
-             /*if(empty($usuario_imagen)){
-                 
-                  $usuario_imagen= $_POST["archivo"];
-                
-             }*/             
+        
+          if(empty($_POST["password"])){
+               /*si se envia el formulario se edita el usuario*/
+            $usuarios->editar_perfil($id_usuario,$usuario,"",$nombre,$apellido,$imagen,$rol,$idd,$iddDes);
+        
 
-           
-            /*si se envia el formulario se edita el usuario*/
-           $usuarios->editar_perfil($id_usuario,$usuario,$pass_encriptado,$nombre,$apellido,$imagen,$rol,$idd,$iddDes);
-       }
+          }else {
+              /*encriptamos el password*/
+            $password=$_POST["password"];
+
+            $pass_encriptado= password_hash($password,PASSWORD_DEFAULT);  
+
+          
+            /*$usuario_imagen=$_FILES["entrada_imagen"]["name"];
+            $usuario_imagen_temp=$_FILES["entrada_imagen"]["tmp_name"]; 
+            move_uploaded_file($usuario_imagen_temp,"../images/$usuario_imagen");*/
+            
+            /*validamos si el campo de la imagen es vacio se envia la misma imagen del registro de la bd*/
+                /*if(empty($usuario_imagen)){
+                    
+                    $usuario_imagen= $_POST["archivo"];
+                    
+                }*/             
+
+            
+                /*si se envia el formulario se edita el usuario*/
+            $usuarios->editar_perfil($id_usuario,$usuario,$pass_encriptado,$nombre,$apellido,$imagen,$rol,$idd,$iddDes);
+            }
+        }
 
 
    ?>
@@ -254,7 +267,9 @@
       
       <div class="form-group">
          <label for="post_content">Password</label>
-          <input type="password" value="value="<?php echo $datos[0]["password"]?>"" class="form-control" name="password">
+          <!-- <input type="password" value="value="<?php echo $datos[0]["password"]?>"" class="form-control" name="password"> -->
+          <input type="password" value="" class="form-control" name="password">
+
       </div>
       
       

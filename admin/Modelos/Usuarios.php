@@ -452,84 +452,109 @@
       }
       
       public function editar_perfil($id_usuario,$usuario,$password,$nombre,$apellido,$imagen,$rol,$idd,$iddDes){
-           
-          
-           /*validamos que los campos no esten vacios*/
-              if(empty($_POST["nombre"]) or empty($_POST["apellido"]) or empty($_POST["rol"]) or empty($_POST["usuario"]) or empty($_POST["password"]) or empty($idd)){
-                 
-                 header("Location:perfil.php?m=1");
-                 exit();
-             }
-          
-              /*encriptamos el password*/
-              $password=$_POST["password"];
+          /*validamos que los campos no esten vacios*/
+        if(empty($_POST["nombre"]) or empty($_POST["apellido"]) or empty($_POST["rol"]) or empty($_POST["usuario"]) or empty($idd)){
 
-              $pass_encriptado= password_hash($password,PASSWORD_DEFAULT);
-              
-           $sql="update usuarios set
-           
-             usuario=?,
-             password=?,
-             nombre=?,
-             apellido=?,
-             imagen='imagen',
-             rol=?,
-             idd=?,
-             idddesc=?
-             where 
-             id_usuario=?
-           
-           
-           ";
-            
-            /*$usuario_imagen= $_FILES["entrada_imagen"]["name"]; 
-            $usuario_imagen_temp=$_FILES["entrada_imagen"]["tmp_name"];
-            move_uploaded_file($usuario_imagen_temp,"../images/$usuario_imagen");*/
-            
-            /*validando la imagen*/
-            /*if(empty($usuario_imagen)){
-                 
-               $usuario_imagen= $_POST["archivo"];  
-                
-             }*/
-           
-           
-           $resultado= $this->db->prepare($sql);
+          header("Location:perfil.php?m=1");
+          exit();
+        }
+        if(empty($_POST["password"])){
+          $sql="update usuarios set
 
-           $resultado->bindValue(1,$_POST["usuario"]);
-           $resultado->bindValue(2,$pass_encriptado);
-           $resultado->bindValue(3,$_POST["nombre"]);
-           $resultado->bindValue(4,$_POST["apellido"]);
-           //$resultado->bindValue(4,$entrada_imagen);
-           $resultado->bindValue(5,$_POST["rol"]);
-           $resultado->bindValue(6,$idd);
-           $resultado->bindValue(7,$iddDes);
-           $resultado->bindValue(8,$_SESSION["id_usuario"]);
-           
+          usuario=?,
+          nombre=?,
+          apellido=?,
+          imagen='imagen',
+          rol=?,
+          idd=?,
+          idddesc=?
+          where 
+          id_usuario=?
+
+          ";
+
+          $resultado= $this->db->prepare($sql);
+
+          $resultado->bindValue(1,$_POST["usuario"]);
+          $resultado->bindValue(2,$_POST["nombre"]);
+          $resultado->bindValue(3,$_POST["apellido"]);
+          //$resultado->bindValue(4,$entrada_imagen);
+          $resultado->bindValue(4,$_POST["rol"]);
+          $resultado->bindValue(5,$idd);
+          $resultado->bindValue(6,$iddDes);
+          $resultado->bindValue(7,$_SESSION["id_usuario"]);
+
+
+        }else{ 
+
+          /*encriptamos el password*/
+          $password=$_POST["password"];
+
+          $pass_encriptado= password_hash($password,PASSWORD_DEFAULT);
+
+          $sql="update usuarios set
+
+          usuario=?,
+          password=?,
+          nombre=?,
+          apellido=?,
+          imagen='imagen',
+          rol=?,
+          idd=?,
+          idddesc=?
+          where 
+          id_usuario=?
+
+
+          ";
+
+          /*$usuario_imagen= $_FILES["entrada_imagen"]["name"]; 
+          $usuario_imagen_temp=$_FILES["entrada_imagen"]["tmp_name"];
+          move_uploaded_file($usuario_imagen_temp,"../images/$usuario_imagen");*/
+
+          /*validando la imagen*/
+          /*if(empty($usuario_imagen)){
+
+          $usuario_imagen= $_POST["archivo"];  
+
+          }*/
+
+
+          $resultado= $this->db->prepare($sql);
+
+          $resultado->bindValue(1,$_POST["usuario"]);
+          $resultado->bindValue(2,$pass_encriptado);
+          $resultado->bindValue(3,$_POST["nombre"]);
+          $resultado->bindValue(4,$_POST["apellido"]);
+          //$resultado->bindValue(4,$entrada_imagen);
+          $resultado->bindValue(5,$_POST["rol"]);
+          $resultado->bindValue(6,$idd);
+          $resultado->bindValue(7,$iddDes);
+          $resultado->bindValue(8,$_SESSION["id_usuario"]);
+
           //  $resultado->bindValue(1,$_POST["usuario"]);
           //  $resultado->bindValue(2,$pass_encriptado);
           //  $resultado->bindValue(3,$_POST["nombre"]);
           //  $resultado->bindValue(4,$_POST["apellido"]);
           //  //$resultado->bindValue(4,$entrada_imagen);
           //  $resultado->bindValue(5,$_POST["rol"]);
-          //  $resultado->bindValue(6,$_SESSION["id_usuario"]);          
-           
-             if(!$resultado->execute()){
-                  
-                 header("Location:perfil.php?m=2");
-             
-             }else {
-                  
-                  /*se edita el registro*/
-                  if($resultado->rowCount()>0){
-                      
-                       header("Location:perfil.php?m=3");   
-                  
-                  }else{
-                     header("Location:perfil.php?m=4");  
-                  }
-             }  
-       } 
+          //  $resultado->bindValue(6,$_SESSION["id_usuario"]);
+        }          
+
+        if(!$resultado->execute()){
+          header("Location:perfil.php?m=2");
+
+        }else {
+          /*se edita el registro*/
+          if($resultado->rowCount()>0){
+              
+            header("Location:perfil.php?m=3");   
+
+          }else{
+              header("Location:perfil.php?m=4");  
+          }
+        }  
+      } 
       
        public function get_numero_usuarios(){
           
@@ -565,11 +590,11 @@
            
        }
       
-      public function registrar_usuario($usuario,$password,$nombre,$apellido,$correo){
+      public function registrar_usuario($usuario,$password,$nombre,$apellido,$correo,$idd,$iddDes){
            
           
            /*validamos que los campos no esten vacios*/
-             if(empty($_POST["nombre"]) and empty($_POST["apellido"]) and empty($_POST["usuario"]) and empty($_POST["correo"]) and empty($_POST["password"])){
+             if(empty($_POST["nombre"]) and empty($_POST["apellido"]) and empty($_POST["usuario"]) and empty($_POST["correo"]) and empty($_POST["password"]) or empty($idd)){
                  
                  header("Location:registrar.php?m=1");
                  exit();
@@ -633,7 +658,7 @@
                       $pass_encriptado= password_hash($password,PASSWORD_DEFAULT);
 
 
-                       $sql="insert into usuarios values(null,?,?,?,?,?,'imagen','suscriptor','0')";
+                       $sql="insert into usuarios values(null,?,?,?,?,?,'imagen','suscriptor',?,?,'0')";
 
                        $resultado= $this->db->prepare($sql);
 
@@ -642,6 +667,8 @@
                        $resultado->bindValue(3,$_POST["nombre"]);
                        $resultado->bindValue(4,$_POST["apellido"]);
                        $resultado->bindValue(5,$_POST["correo"]);
+                       $resultado->bindValue(6,$idd);
+                       $resultado->bindValue(7,$iddDes);
                        
 
                          if(!$resultado->execute()){
