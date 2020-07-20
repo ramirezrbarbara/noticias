@@ -54,15 +54,12 @@
           if(empty($_POST["password"])){
                /*si se envia el formulario se edita el usuario*/
             $usuarios->editar_perfil($id_usuario,$usuario,"",$nombre,$apellido,$imagen,$rol,$idd,$iddDes);
-        
-
           }else {
               /*encriptamos el password*/
             $password=$_POST["password"];
 
             $pass_encriptado= password_hash($password,PASSWORD_DEFAULT);  
 
-          
             /*$usuario_imagen=$_FILES["entrada_imagen"]["name"];
             $usuario_imagen_temp=$_FILES["entrada_imagen"]["tmp_name"]; 
             move_uploaded_file($usuario_imagen_temp,"../images/$usuario_imagen");*/
@@ -191,7 +188,7 @@
     <div>Categoría</div><br>   
     <div class="row d-flex text-left">
         <div class="col-md-6 mb-3">        
-            <input type="email" value="<?php echo $datos[0]["idddesc"]?>" class="form-control" name="correo" disabled>
+            <input type="idddescripcion" value="<?php echo $datos[0]["idddesc"]?>" class="form-control" name="idddescripcion" disabled>
         </div>
     </div>
 
