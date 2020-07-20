@@ -58,7 +58,7 @@
                             
                             <!-- BACKEND - CMS -->
                             
-                          <small><?php echo $_SESSION["nombre"];?></small>
+                          <small><?php echo "BIENVENIDO ", $_SESSION["usuario"];?></small>
                         </h1>
 
                     </div>
@@ -68,7 +68,7 @@
                 
        
                 <div class="row">
-                    <div class="col-lg-3 col-md-6">
+                    <div class="col-lg-3 col-md-6" >
                         <div class="panel panel-green">
                             <div class="panel-heading">
                                 <div class="row">
@@ -76,11 +76,8 @@
                                         <i class="fa fa-file-text fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        
-                                        
-                                            <div class="huge"><?php echo $entrada->get_numero_entradas();?></div>
-
-                                        <div>Entradas</div>
+                                        <div class="huge"><?php echo $entrada->get_numero_entradas();?></div>
+                                        <div>  Entradas</div>
                                     </div>
                                 </div>
                             </div>

@@ -1,6 +1,5 @@
 <?php
 
- 
    /*validacion de cambio de status de la entrada con el checkbox*/
 
     if(isset($_POST["checkBoxArray"])){
@@ -72,37 +71,20 @@ if(isset($_GET["id_usuario"])){
     
     $user= $usuarios->get_usuario_por_id($id_usuario);
 }
-
+ 
     
 ?>
 
 
-
 <h1 class="text-primary text-center">ENTRADAS</h1>
 
-<form id="form" action="" method='post'>
-    <table class="table table-striped table-bordered" >
-
-        <!-- <div id="contenedor_opciones" class="col-xs-4">
-            <select class="form-control" name="bulk_opciones" id="">
-                <option value="">Seleccione Opciones</option>
-                <option value="publicado">Publicar</option>
-                <option value="borrador">Borrar</option>
-                <option value="eliminar">Eliminar</option>
-                <option value="clonar">Clonar</option>
-            </select>
-        </div> 
-
-        <div class="col-xs-4">
-            <input type="submit" name="submit" class="btn btn-success" value="Aplicar">
-            <a class="btn btn-primary" href="entradas.php?accion=add_entrada">Añadir Nuevo</a>
-        </div> -->
+    <table class="table table-striped table-bordered">        
        <div class="col-sm-3">   
-            <form action="#" method="get" class="sidebar-form">
+            <form method="post" action=""  class="sidebar-form">
                 <div class="input-group">
-                <input type="text" name="q" class="form-control" placeholder="Search...">
+                <input type="text" name="buscar" class="form-control" placeholder="Search...">
                 <span class="input-group-btn">
-                    <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                    <button type="submit" name="submit" class="btn btn-flat"><i class="fa fa-search"></i>
                     </button>
                     </span>
                 </div>
@@ -112,8 +94,6 @@ if(isset($_GET["id_usuario"])){
 
         <thead class="table table-bordered table-striped dataTable thead-dark" style="text-align:center">
             <tr>
-                <!-- <th><input id="selecciona_todo" type="checkbox"></th> -->
-                <!-- <th>Id</th> -->
                 <th>Fecha</th>
                 <th>Usuarios</th>
                 <th>Titulo</th>
@@ -130,41 +110,90 @@ if(isset($_GET["id_usuario"])){
             <?php 
 
             $iddCat=$categoria->get_iddCategoria($_SESSION["id_usuario"]);
-
-            for($i=0;$i<count($datos);$i++){
-                if ($datos[$i]["id_categoria_entrada"] == $iddCat) {
-                ?>
-                <tr>
-                    <!-- <td><input class='checkBoxes' type='checkbox' name='checkBoxArray[]' value='<?php echo $datos[$i]["id_entrada"];?>'></td> -->
-                    <!-- <td><?php echo $datos[$i]["id_entrada"];?></td> -->
-                    <td><?php echo date("d-m-Y",strtotime($datos[$i]["entrada_fecha"]));?></td>
-                    <td><?php echo $datos[$i]["entrada_autor"];?></td>
-                    <td><?php echo $datos[$i]["entrada_titulo"];?></td>
-                    <?php
-                        $categoria->get_categoria_por_id_entrada($datos[$i]["id_categoria_entrada"]);
-                    ?>
-                    <td><?php echo $datos[$i]["entrada_status"];?></td>
-                    <!-- <td><img width='100' src="../images/ -->
-                    <td><img width='100' src="
-                    <?php 
-                        // echo $datos[$i]["entrada_imagen"];
-                        echo '..'.substr($datos[$i]["entrada_imagen"],44);
-                    ?>
-                    " alt=""></td>
-                    <td><?php echo $datos[$i]["entrada_etiquetas"];?></td>
-                    <!--<td><span class="badge badge-danger"><?php //echo $datos[$i]["entrada_comment_count"];?></span></td>-->
-                    <!-- <td><a href="entrada_comentarios.php?id_entrada=<?php echo $datos[$i]["id_entrada"]?>"><?php echo $comentario->get_numero_comentarios_por_id_entrada($datos[$i]["id_entrada"]);?></a></td> -->
-                    <td><a onClick="javascript:return confirm('Estas seguro que lo quieres resetear?');"  href='entradas.php?resetear=<?php echo $datos[$i]["id_entrada"];?>'><?php echo $datos[$i]["entrada_views_count"];?></a></td>                                                
-                    <td><div class="btn-group">
-                        <button type="button" class='btn btn-primary'> <a href='../entrada.php?id_entrada=<?php echo $datos[$i]["id_entrada"]?>'><i class="fa fa-eye" style="color:white;"></i></a></button>
-                        <button type="button" class='btn btn-success'><a href='entradas.php?accion=edit_entrada&id_entrada=<?php echo $datos[$i]["id_entrada"];?>'><i class="fa fa-pencil" style="color:white;"></i></a></button>
-                        <button type="button" class='btn btn-danger'><a onClick="javascript:return confirm('Estas seguro que lo quieres eliminar?');"  href='entradas.php?eliminar=<?php echo $datos[$i]["id_entrada"];?>'><i class="fa fa-trash" style="color:white;"></i></a></button>
-                    </div></td>
+            
+            if(isset($_POST["submit"])){
+                $buscar= $_POST["buscar"];
+            
+                $conectar = Conectar::conexion();
+                $sql="select * from entradas where entrada_titulo like '%$buscar%' or entrada_contenido like '%$buscar%' or entrada_etiquetas like '%$buscar%'";
+                
+                $resultado= $conectar->prepare($sql);
+            
+                if(!$resultado->execute()){
+                
+                    die("fallo en la consulta"); 
                     
-                </tr>
+                } else {
+                    if($resultado->rowCount()==0){
+                    
+                    echo "<h1 class='text-center' style='color:red'>No hay resultados</h1>";
+                    
+                    }else {
+                        while($reg=$resultado->fetch()){?>
+                            <tr>
+                                <td><?php echo date("d-m-Y",strtotime($reg["entrada_fecha"]));?></td>
+                                <td><?php echo $reg["entrada_autor"];?></td>
+                                <td><?php echo $reg["entrada_titulo"];?></td>
+                                <?php
+                                    $categoria->get_categoria_por_id_entrada($reg["id_categoria_entrada"]);
+                                ?>
+                                <td><?php echo $reg["entrada_status"];?></td>
+                                <td><img width='100' src="
+                                <?php 
+                                    echo '..'.substr($reg["entrada_imagen"],44);
+                                ?>
+                                " alt=""></td>
+                                <td><?php echo $reg["entrada_etiquetas"];?></td>
+                                <!--<td><span class="badge badge-danger"><?php //echo $datos[$i]["entrada_comment_count"];?></span></td>-->
+                                <!-- <td><a href="entrada_comentarios.php?id_entrada=<?php echo $reg["id_entrada"]?>"><?php echo $comentario->get_numero_comentarios_por_id_entrada($reg["id_entrada"]);?></a></td> -->
+                                <td><a onClick="javascript:return confirm('Estas seguro que lo quieres resetear?');"  href='entradas.php?resetear=<?php echo $reg["id_entrada"];?>'><?php echo $reg["entrada_views_count"];?></a></td>                                                
+                                <td><div class="btn-group">
+                                    <button type="button" class='btn btn-primary'> <a href='../entrada.php?id_entrada=<?php echo $reg["id_entrada"]?>'><i class="fa fa-eye" style="color:white;"></i></a></button>
+                                    <button type="button" class='btn btn-success'><a href='entradas.php?accion=edit_entrada&id_entrada=<?php echo $reg["id_entrada"];?>'><i class="fa fa-pencil" style="color:white;"></i></a></button>
+                                    <button type="button" class='btn btn-danger'><a onClick="javascript:return confirm('Estas seguro que lo quieres eliminar?');"  href='entradas.php?eliminar=<?php echo $reg["id_entrada"];?>'><i class="fa fa-trash" style="color:white;"></i></a></button>
+                                </div></td>
+                            </tr>
+                        <?php 
 
-            <?php }
+                        }
+                    }
+                }
+            }else { 
+
+                for($i=0;$i<count($datos);$i++){
+                   ?>
+                    <tr>
+                        <!-- <td><input class='checkBoxes' type='checkbox' name='checkBoxArray[]' value='<?php echo $datos[$i]["id_entrada"];?>'></td> -->
+                        <!-- <td><?php echo $datos[$i]["id_entrada"];?></td> -->
+                        <td><?php echo date("d-m-Y",strtotime($datos[$i]["entrada_fecha"]));?></td>
+                        <td><?php echo $datos[$i]["entrada_autor"];?></td>
+                        <td><?php echo $datos[$i]["entrada_titulo"];?></td>
+                        <?php
+                            $categoria->get_categoria_por_id_entrada($datos[$i]["id_categoria_entrada"]);
+                        ?>
+                        <td><?php echo $datos[$i]["entrada_status"];?></td>
+                        <!-- <td><img width='100' src="../images/ -->
+                        <td><img width='100' src="
+                        <?php 
+                            // echo $datos[$i]["entrada_imagen"];
+                            echo '..'.substr($datos[$i]["entrada_imagen"],44);
+                        ?>
+                        " alt=""></td>
+                        <td><?php echo $datos[$i]["entrada_etiquetas"];?></td>
+                        <!--<td><span class="badge badge-danger"><?php //echo $datos[$i]["entrada_comment_count"];?></span></td>-->
+                        <!-- <td><a href="entrada_comentarios.php?id_entrada=<?php echo $datos[$i]["id_entrada"]?>"><?php echo $comentario->get_numero_comentarios_por_id_entrada($datos[$i]["id_entrada"]);?></a></td> -->
+                        <td><a onClick="javascript:return confirm('Estas seguro que lo quieres resetear?');"  href='entradas.php?resetear=<?php echo $datos[$i]["id_entrada"];?>'><?php echo $datos[$i]["entrada_views_count"];?></a></td>                                                
+                        <td><div class="btn-group">
+                            <button type="button" class='btn btn-primary'> <a href='../entrada.php?id_entrada=<?php echo $datos[$i]["id_entrada"]?>'><i class="fa fa-eye" style="color:white;"></i></a></button>
+                            <button type="button" class='btn btn-success'><a href='entradas.php?accion=edit_entrada&id_entrada=<?php echo $datos[$i]["id_entrada"];?>'><i class="fa fa-pencil" style="color:white;"></i></a></button>
+                            <button type="button" class='btn btn-danger'><a onClick="javascript:return confirm('Estas seguro que lo quieres eliminar?');"  href='entradas.php?eliminar=<?php echo $datos[$i]["id_entrada"];?>'><i class="fa fa-trash" style="color:white;"></i></a></button>
+                        </div></td>
+                        
+                    </tr>
+
+                <?php 
+                //}
+                }
             }?>            
         </tbody>
     </table>
-</form>

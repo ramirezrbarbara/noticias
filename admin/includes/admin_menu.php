@@ -19,16 +19,15 @@
                     </li>
                 </ul>
             </li>
-            <li>
-                <a href="./categorias.php"><i class="fa fa-tasks"></i> Categorias</a>
-            </li>
-            <!-- <li>
-                <a href="comentarios.php"><i class="fa fa-fw fa-comments"></i>Comentarios</a>
-            </li> -->
-            <!--si el usuario es el administrador entonces puede ver el modulo de usuarios y puede ver el listado de usuarios, agregar, editar y eliminar-->   
-            <?php                        
-            if(isset($_SESSION["rol"]) and $_SESSION["rol"]=="administrador"){
-            ?>
+            <?php if ($_SESSION["rol"] == "administrador") {?>
+                <li>
+                    <a href="./categorias.php"><i class="fa fa-tasks"></i> Categorias</a>
+                </li>
+                <!-- <li>
+                    <a href="comentarios.php"><i class="fa fa-fw fa-comments"></i>Comentarios</a>
+                </li> -->
+                <!--si el usuario es el administrador entonces puede ver el modulo de usuarios y puede ver el listado de usuarios, agregar, editar y eliminar-->   
+                
                 <li>
                     <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-users"></i> Usuarios<i class="fa fa-fw fa-caret-down"></i></a>
                     <ul id="demo" class="collapse">
@@ -42,7 +41,7 @@
                 </li>
             <?php  
             }
-            ?>
+             ?>
             <li>
                 <a href="perfil.php"><i class="fa fa-fw fa-user"></i>Perfil</a>
             </li>
@@ -66,15 +65,18 @@
                             $usuarios= new Usuarios();
                         ?>
                         <li>
-                            <a href="">Online: <span class="usuarios_online"><span class="badge badge-primary"><?php echo $usuarios->usuarios_online();?></span></span></a><i>  |</i>
+                            <b href="">Online: <span class="usuarios_online"><span class="badge badge-success"><?php echo $usuarios->usuarios_online();?></span></span></b><i>  |</i>
                         </li>
                         <!--el admin_navigation.php se llama en el index.php del admin luego para ir al index.php(fuera de la carpeta admin solo tendriamos que salir de la carpeta admin y listo)-->
                         <!-- <li>
                             <a href="../index.php">HOME</a>
                         </li> -->
-                        <?php echo $_SESSION["nombre"];?>
-                        <b class="caret"></b></a>
+                        
                         <li class="dropdown">
+                            <?php echo $_SESSION["nombre"];?>
+                        </li>
+                        <li class="dropdown">
+                         <b class="caret"></b>
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>
                             <ul class="dropdown-menu">
                                 <li>
@@ -84,7 +86,17 @@
                                 <li>
                                     <a href="../includes/logout.php"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
                                 </li> 
-                            </ul>
+                            </ul> 
+                            <!-- <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <?php echo $_SESSION["nombre"];?>
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" href="#">Action</a>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                </div>
+                            </div>  -->
                         </li>
                     </ul>
                 </div>

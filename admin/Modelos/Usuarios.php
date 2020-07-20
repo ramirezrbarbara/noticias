@@ -547,8 +547,9 @@
         }else {
           /*se edita el registro*/
           if($resultado->rowCount()>0){
-              
-            header("Location:perfil.php?m=3");   
+            $_SESSION["rol"] = $_POST["rol"];
+            header("Location:perfil.php?m=3");  
+
 
           }else{
               header("Location:perfil.php?m=4");  

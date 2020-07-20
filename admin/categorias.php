@@ -9,11 +9,11 @@
     $datos= $categoria->get_categorias();
 
        /*validacion del formulario de categoria*/
-        if(isset($_POST["submit"])){
+        // if(isset($_POST["submit"])){
               
-             $categoria->insertar_categoria($_POST["cat_titulo"]);
-             //exit();
-         } 
+        //      $categoria->insertar_categoria($_POST["cat_titulo"]);
+        //      //exit();
+        //  } 
 
       /*validando eliminacion de la categoria*/
 
@@ -135,7 +135,7 @@
                 
     ?>     
            
-    
+<!--     
     <form action="" method="post" >
         <div class="col-6 form-group" style="float:left;">
             <label for="cat-titulo">Añadir categoría</label>
@@ -146,7 +146,7 @@
         </div>
      
 
-    </form>
+    </form> -->
     
     <!--traemos el formulario cuando se edita un registro-->
        
@@ -165,6 +165,17 @@
             <div class="col-xs-6">
     <table class="table table-striped table-bordered" >
       
+        <div class="col-sm-3">   
+            <form method="post" action=""  class="sidebar-form">
+                <div class="input-group">
+                <input type="text" name="buscar" class="form-control" placeholder="Search...">
+                <span class="input-group-btn">
+                    <button type="submit" name="submit" class="btn btn-flat"><i class="fa fa-search"></i>
+                    </button>
+                    </span>
+                </div>
+            </form>
+        </div>
 
         <thead class="table table-bordered table-striped dataTable thead-dark" style="text-align:center">
             <tr>
@@ -176,28 +187,65 @@
         <tbody>
 
        <?php
-              
-               for($i=0;$i<count($datos);$i++){
-                   
+       if(isset($_POST["buscar"])){
+            $buscar= $_POST["buscar"];
         
-       ?>
-   
-    
-              <tr style="text-align:center">
-                  <!-- <td><?php echo $datos[$i]["id_categoria"];?></td> -->
-                  <td><?php echo $datos[$i]["titulo"];?></td>
-                  <!-- <td><a class="btn btn-primary " ><i class="fa fa-pencil"></i>  Editar</a></td>
-                  <td><a ><i class="fa fa-trash"></i>  Eliminar</a></td> -->
-                  <td><div class="btn-group">
+            $conectar = Conectar::conexion();
+            $sql="select * from categorias where titulo like '%$buscar%'";
+            
+            $resultado= $conectar->prepare($sql);
+        
+            if(!$resultado->execute()){
+            
+                die("fallo en la consulta"); 
+                
+            } else {
+                if($resultado->rowCount()==0){
+                
+                echo "<h1 class='text-center' style='color:red'>No hay resultados</h1>";
+                
+                } else {
+                    while($reg=$resultado->fetch()){?>
+                        <tr>
+                        <tr style="text-align:center">
+                        <!-- <td><?php echo $reg["id_categoria"];?></td> -->
+                        <td><?php echo $reg["titulo"];?></td>
+                        <!-- <td><a class="btn btn-primary " ><i class="fa fa-pencil"></i>  Editar</a></td>
+                        <td><a ><i class="fa fa-trash"></i>  Eliminar</a></td> -->
+                        <td><div class="btn-group">
+                            <button type="button" class='btn btn-success'><a href='categorias.php?editar=<?php echo $datos[$i]["id_categoria"]?>'><i class="fa fa-pencil" style="color:white;"></i></a></button>
+                            <button type="button" class='btn btn-danger'><a onClick="javascript:return confirm('Estas seguro que lo quieres eliminar?');"  href='categorias.php?eliminar=<?php echo $datos[$i]["id_categoria"]?>'><i class="fa fa-trash" style="color:white;"></i></a></button>
+                        </div></td>
+                            
+                        </tr> 
+                        </tr>
+                    <?php 
+
+                    }
+                }
+            }
+        }else { 
+                
+            for($i=0;$i<count($datos);$i++){
+                    ?>
+
+                <tr style="text-align:center">
+                    <!-- <td><?php echo $datos[$i]["id_categoria"];?></td> -->
+                    <td><?php echo $datos[$i]["titulo"];?></td>
+                    <!-- <td><a class="btn btn-primary " ><i class="fa fa-pencil"></i>  Editar</a></td>
+                    <td><a ><i class="fa fa-trash"></i>  Eliminar</a></td> -->
+                    <td><div class="btn-group">
                         <button type="button" class='btn btn-success'><a href='categorias.php?editar=<?php echo $datos[$i]["id_categoria"]?>'><i class="fa fa-pencil" style="color:white;"></i></a></button>
                         <button type="button" class='btn btn-danger'><a onClick="javascript:return confirm('Estas seguro que lo quieres eliminar?');"  href='categorias.php?eliminar=<?php echo $datos[$i]["id_categoria"]?>'><i class="fa fa-trash" style="color:white;"></i></a></button>
                     </div></td>
-                  
-              </tr>        
+                    
+                </tr>        
 
-  <?php 
-               
-        } 
+            <?php 
+                
+            } 
+        }
+        
 
             
    ?>
