@@ -117,7 +117,7 @@
                 
 
                 <!-- Blog Categories Well -->
-                <div class="well">
+                <!-- <div class="well">
                   
                   
                   
@@ -169,4 +169,4 @@
                  <?php require_once "widget.php"; ?>
 
             </div>
-            
+             -->

@@ -20,62 +20,62 @@
                 
                  <?php
                     
-                   $conectar= Conectar::conexion();
+                //    $conectar= Conectar::conexion();
                     
-                   $sql="select * from categorias LIMIT 3";
+                //    $sql="select * from categorias LIMIT 3";
                    
-                   $resultado = $conectar->prepare($sql);
+                //    $resultado = $conectar->prepare($sql);
                     
                    
-                     if(!$resultado->execute()){
+                //      if(!$resultado->execute()){
                          
-                        die("fallo en la consulta");
+                //         die("fallo en la consulta");
                          
-                     }else{
+                //      }else{
                         
-                         while($reg= $resultado->fetch()){
+                //          while($reg= $resultado->fetch()){
                              
-                             $id_categoria=$reg["id_categoria"];
-                             $cat_titulo=$reg["titulo"];
+                //              $id_categoria=$reg["id_categoria"];
+                //              $cat_titulo=$reg["titulo"];
                              
-                             /*INICIO link active en el menu*/
-                             $categoria_clase="";
-                             $login_clase="";
-                             $registrarse_clase="";
-                             $contacto_clase="";
+                //              /*INICIO link active en el menu*/
+                //              $categoria_clase="";
+                //              $login_clase="";
+                //              $registrarse_clase="";
+                //              $contacto_clase="";
                              
-                             $nombre_pagina= basename($_SERVER["PHP_SELF"]);
+                //              $nombre_pagina= basename($_SERVER["PHP_SELF"]);
                              
-                             $registrarse="registrar.php";
-                             $login="login.php";
+                //              $registrarse="registrar.php";
+                //              $login="login.php";
                              
-                              if(isset($_GET["id_categoria"]) and $_GET["id_categoria"]==$id_categoria){
+                //               if(isset($_GET["id_categoria"]) and $_GET["id_categoria"]==$id_categoria){
                                  
-                                  $categoria_clase="active";
+                //                   $categoria_clase="active";
                               
-                              } elseif($nombre_pagina==$registrarse){
+                //               } elseif($nombre_pagina==$registrarse){
                                  
-                                   $registrarse_clase="active";
+                //                    $registrarse_clase="active";
                               
-                              } elseif($nombre_pagina==$login){
+                //               } elseif($nombre_pagina==$login){
                                  
-                                   $login_clase="active";
+                //                    $login_clase="active";
                               
-                              } 
+                //               } 
                              
                              
-                             else{
+                //              else{
                                  
-                                  $contacto_clase="active";
-                              }
+                //                   $contacto_clase="active";
+                //               }
                              
-                             /*FIN link active en el menu*/
+                //              /*FIN link active en el menu*/
                              
-                             echo "<li class='$categoria_clase'><a href='categoria.php?id_categoria=$id_categoria'>$cat_titulo</a></li>";
+                //              echo "<li class='$categoria_clase'><a href='categoria.php?id_categoria=$id_categoria'>$cat_titulo</a></li>";
                              
-                         }
+                //          }
                          
-                     }
+                //      }
                     
                     
                     
