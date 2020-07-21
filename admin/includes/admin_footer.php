@@ -1,14 +1,20 @@
     
 
-    </div>
-    
-    
+    </div>    
     <!-- /#wrapper -->
 
-    <!-- jQuery -->
-  
+    <!-- jQueryAdminlte -->
+    <!-- <script src="adminlte/plugins/jquery/jquery.min.js"></script> -->
+    <!-- BootstrapAdminlte -->
+    <script src="adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE -->
+    <script src="adminlte/js/adminlte.js"></script>
 
-  
+    <!-- OPTIONAL SCRIPTS ADMINLTE -->
+    <script src="adminlte/plugins/chart.js/Chart.min.js"></script>
+    <script src="adminlte/js/demo.js"></script>
+    <script src="adminlte/js/pages/dashboard3.js"></script>
+    
     <!-- jQuery -->
     <script src="js/scripts.js"></script>
     <script src="js/jquery-3.5.1.slim.min.js"></script>
@@ -16,8 +22,8 @@
 
     <!-- Bootstrap Core JavaScript -->    
     <script src="js/popper.min.js"></script>    
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/bootstrap.js"></script>
+    <!-- <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap.js"></script> -->
     <script src="js/sidebar.js"></script>
     <script src="js/perfil.js"></script>
     

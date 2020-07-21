@@ -59,45 +59,64 @@
                     <span>Menu</span>
                 </button> 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="nav navbar-nav ml-auto">            
+                    <ul class="nav navbar-nav ml-auto">
                         <?php 
                             require_once("Modelos/Usuarios.php");
                             $usuarios= new Usuarios();
-                        ?>
-                        <li>
-                            <b href="">Online: <span class="usuarios_online"><span class="badge badge-success"><?php echo $usuarios->usuarios_online();?></span></span></b><i>  |</i>
+                        ?>                        
+                        <li class="nav-item dropdown">                            
+                            <a class="nav-link" data-toggle="dropdown" href="#">
+                                <b>Online:</b>
+                                <i class="far fa-user"></i>
+                                <span class="badge badge-danger navbar-badge alert-success"><?php echo $usuarios->usuarios_online();?></span>
+                            </a>
                         </li>
+                        <!-- <li class="nav-item dropdown">
+                            <a class="nav-link" data-toggle="dropdown" href="">Online: <span class="usuarios_online"><span class="far fa-user"><?php //echo $usuarios->usuarios_online();?></span></span></a><i>  |</i>
+                        </li> -->
                         <!--el admin_navigation.php se llama en el index.php del admin luego para ir al index.php(fuera de la carpeta admin solo tendriamos que salir de la carpeta admin y listo)-->
                         <!-- <li>
                             <a href="../index.php">HOME</a>
                         </li> -->
-                        
-                        <li class="dropdown">
-                            <?php echo $_SESSION["nombre"];?>
+                        <li class="nav-item dropdown">                            
+                            <a class="nav-link" data-toggle="dropdown" href="#">
+                                <b>Usuario:<?php echo $_SESSION["nombre"];?></b>
+                                <i class="fas fa-user-cog"></i>                                
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right" style="left: inherit; right: 0px;">
+                            <!-- Desplegar inicio-->
+                            <span class="dropdown-item dropdown-header">Perfil: <?php echo $_SESSION["rol"];?></span>
+                            <div class="dropdown-divider"></div>
+                            <a href="../includes/logout.php" class="dropdown-item"><i class="fas fa-sign-out-alt"></i>Salir</a>                            
+                            <!-- Desplegar fin-->
+                        </li>
+                        <!-- <li class="dropdown">
+                            <?php// echo $_SESSION["nombre"];?>
                         </li>
                         <li class="dropdown">
                          <b class="caret"></b>
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a href="perfil.php"><i class="fa fa-fw fa-user"></i> Perfil</a>
+                                    <a href="perfil.php">
+                                    <i class="fa fa-fw fa-user"></i> Perfil</a>
                                 </li>
                                 <li class="divider"></li>
                                 <li>
                                     <a href="../includes/logout.php"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
                                 </li> 
                             </ul> 
-                            <!-- <div class="dropdown">
+                            <div class="dropdown">
                                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <?php echo $_SESSION["nombre"];?>
+                                <?php// echo $_SESSION["nombre"];?>
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                     <a class="dropdown-item" href="#">Action</a>
                                     <a class="dropdown-item" href="#">Another action</a>
                                     <a class="dropdown-item" href="#">Something else here</a>
                                 </div>
-                            </div>  -->
-                        </li>
+                            </div>
+                        </li> -->
                     </ul>
                 </div>
             </div>

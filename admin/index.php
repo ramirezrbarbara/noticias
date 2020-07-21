@@ -54,11 +54,11 @@
                        ?>
                        
                        
-                        <h1 class="page-header">
+                        <h1 align=center class="page-header">
                             
                             <!-- BACKEND - CMS -->
                             
-                          <small><?php echo "BIENVENIDO ", $_SESSION["usuario"];?></small>
+                          <small><?php echo "BIENVENIDO ", strtoupper($_SESSION["nombre"])." ".strtoupper($_SESSION["apellido"])?></small>
                         </h1>
 
                     </div>

@@ -930,9 +930,10 @@
                               
                               /*password de la tabla usuarios*/
                               $id_usuario= $reg["id_usuario"];
-                              $usuario_bd= $reg["usuario"];
+                              $usuario_bd= $reg["usuario"];                              
                               $password_bd = $reg["password"];
                               $nombre_bd = $reg["nombre"];
+                              $apellido_bd= $reg["apellido"];
                               $correo_bd = $reg["correo"];
                               $rol_bd = $reg["rol"];
                               $idd_bd = $reg["idd"];
@@ -947,6 +948,7 @@
                                  $_SESSION["id_usuario"]=$id_usuario;
                                  $_SESSION["usuario"]=$usuario_bd;
                                  $_SESSION["nombre"]=$nombre_bd;
+                                 $_SESSION["apellido"]=$apellido_bd;
                                  $_SESSION["correo"]=$correo_bd;
                                  $_SESSION["rol"]=$rol_bd;
                                  $_SESSION["idd"]=$idd_bd;

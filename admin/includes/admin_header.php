@@ -31,6 +31,13 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/bootstrap.css" rel="stylesheet">
 
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="adminlte/plugins/fontawesome-free/css/all.min.css">
+    <!-- IonIcons -->
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="adminlte/css/adminlte.min.css">
+
     <!-- Custom CSS -->
     <!-- <link href="css/sb-admin.css" rel="stylesheet"> -->
     <link href="css/sidebar.css" rel="stylesheet">
@@ -51,6 +58,8 @@
  <!--<script type="text/javascript" src="https://www.google.com/jsapi"></script>-->
 
 <script src="js/jquery.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<!-- <script src="js/bootstrap.js"></script> -->
 <script src="js/sweetalert.min.js"></script>
 
 <script  src="https://cdn.ckeditor.com/ckeditor5/10.1.0/classic/ckeditor.js"></script>
