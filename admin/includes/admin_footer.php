@@ -26,6 +26,7 @@
     <script src="js/bootstrap.js"></script> -->
     <script src="js/sidebar.js"></script>
     <script src="js/perfil.js"></script>
+    <script src="js/usuario.js"></script>
     
     
      <!--Notificaciones con pusher-->

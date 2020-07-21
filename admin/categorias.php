@@ -56,7 +56,7 @@
                
             </h1> -->
             
-            <h1 class="text-primary">Categorías</h1>
+            <h1 class="text-primary text-center">CATEGORIAS </h1>
 
 
             <div class="col-xs-6">
