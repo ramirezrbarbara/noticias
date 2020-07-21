@@ -1,8 +1,8 @@
    <!-- Footer -->
         <footer>
-            <div class="row">
+            <div align=center class="row">
                 <div class="col-lg-12">
-                    <p>Copyright &copy; CMS by Eyter Higuera</p>
+                    <p>Ministerio del Interior. Version:1.1</p>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>

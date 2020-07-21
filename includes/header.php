@@ -11,7 +11,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>CMS</title>
+    <title>Noticias</title>
 
     <!--ELIMINAR /CMS en la ruta antes de subirlo al hosting-->
     
@@ -19,11 +19,22 @@
     <!-- <link href="/noticias/css/bootstrap.min.css" rel="stylesheet"> -->
     <link href="/noticias/css/bootstrap.min.css" rel="stylesheet">
 
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="admin/adminlte/plugins/fontawesome-free/css/all.min.css">
+    <!-- IonIcons -->
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="admin/adminlte/css/adminlte.min.css">
+
     <!-- Custom CSS -->
     <link href="/noticias/css/blog-home.css" rel="stylesheet">
 
     <link href="/noticias/css/styles.css" rel="stylesheet">
 
+    <!-- Bootstrap script -->
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    
     <!-- sweetalert -->
     <script src="js/sweetalert.min.js"></script>
 

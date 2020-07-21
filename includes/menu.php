@@ -1,8 +1,40 @@
-   <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
+    <!-- Inicio -->
+    <nav class="navbar navbar-expand navbar-orange navbar-light">                
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+            </li>
+            <li class="nav-item d-none d-sm-inline-block">
+                <a href="login.php" class="nav-link">Inicio</a>
+            </li>
+            <li class="nav-item d-none d-sm-inline-block">
+                <!-- <a href="#" class="nav-link">Contacto</a> -->                
+                    <a class="nav-link" href='contacto.php'>Contacto</a>
+            </li>
+            <!-- <li class="nav-item d-none d-sm-inline-block">
+                <a href="#" class="nav-link">Contact</a>
+            </li> -->
+        </ul>
+
+        <!-- SEARCH -->
+        <!-- <form class="form-inline ml-3">
+            <div class="input-group input-group-sm">
+                <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+                <div class="input-group-append">
+                <button class="btn btn-navbar" type="submit">
+                    <i class="fas fa-search"></i>
+                </button>
+                </div>
+            </div>
+        </form> -->
+    </nav>
+    <br>          
+    <!-- Final -->
+
+<!-- INICIO -->
+   <!-- <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">          
            
-           
-            <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span>
@@ -10,78 +42,72 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.php">CMS - FRONTEND</a>
+                <a class="navbar-brand" href="index.php">Menu noticias</a>
             </div>
             
-            
-            <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                 
                  <?php
                     
-                //    $conectar= Conectar::conexion();
+                   $conectar= Conectar::conexion();
                     
-                //    $sql="select * from categorias LIMIT 3";
+                   $sql="select * from categorias LIMIT 3";
                    
-                //    $resultado = $conectar->prepare($sql);
+                   $resultado = $conectar->prepare($sql);
                     
                    
-                //      if(!$resultado->execute()){
+                     if(!$resultado->execute()){
                          
-                //         die("fallo en la consulta");
+                        die("fallo en la consulta");
                          
-                //      }else{
+                     }else{
                         
-                //          while($reg= $resultado->fetch()){
+                         while($reg= $resultado->fetch()){
                              
-                //              $id_categoria=$reg["id_categoria"];
-                //              $cat_titulo=$reg["titulo"];
+                             $id_categoria=$reg["id_categoria"];
+                             $cat_titulo=$reg["titulo"];
                              
-                //              /*INICIO link active en el menu*/
-                //              $categoria_clase="";
-                //              $login_clase="";
-                //              $registrarse_clase="";
-                //              $contacto_clase="";
+                             /*INICIO link active en el menu*/
+                             $categoria_clase="";
+                             $login_clase="";
+                             $registrarse_clase="";
+                             $contacto_clase="";
                              
-                //              $nombre_pagina= basename($_SERVER["PHP_SELF"]);
+                             $nombre_pagina= basename($_SERVER["PHP_SELF"]);
                              
-                //              $registrarse="registrar.php";
-                //              $login="login.php";
+                             $registrarse="registrar.php";
+                             $login="login.php";
                              
-                //               if(isset($_GET["id_categoria"]) and $_GET["id_categoria"]==$id_categoria){
+                              if(isset($_GET["id_categoria"]) and $_GET["id_categoria"]==$id_categoria){
                                  
-                //                   $categoria_clase="active";
+                                  $categoria_clase="active";
                               
-                //               } elseif($nombre_pagina==$registrarse){
+                              } elseif($nombre_pagina==$registrarse){
                                  
-                //                    $registrarse_clase="active";
+                                   $registrarse_clase="active";
                               
-                //               } elseif($nombre_pagina==$login){
+                              } elseif($nombre_pagina==$login){
                                  
-                //                    $login_clase="active";
+                                   $login_clase="active";
                               
-                //               } 
+                              } 
                              
                              
-                //              else{
+                             else{
                                  
-                //                   $contacto_clase="active";
-                //               }
+                                  $contacto_clase="active";
+                              }                             
                              
-                //              /*FIN link active en el menu*/
+                             echo "<li class='$categoria_clase'><a href='categoria.php?id_categoria=$id_categoria'>$cat_titulo</a></li>";
                              
-                //              echo "<li class='$categoria_clase'><a href='categoria.php?id_categoria=$id_categoria'>$cat_titulo</a></li>";
-                             
-                //          }
+                         }
                          
-                //      }
+                     }
                     
                     
                     
-                 ?>
-                 
-                 <!--Si no esta en session entonces se muestra el boton login para loguearse-->  
+                 ?> 
                 
                 <?php
                      
@@ -94,8 +120,6 @@
                      }
                 ?> 
                 
-                
-                <!--validar si esta en session se muestra el boton Admin en caso contrario no se muestra-->  
                 
                 <?php
                      
@@ -115,7 +139,6 @@
                 <li class="<?php echo $contacto_clase;?>"><a href='contacto.php'>Contacto</a></li> 
                 
                 <?php
-                 /*si el usuario esta logueada y si existe el id_entrada en la url entonces se muestra el link de editar entrada en el menu*/ 
                       
                     if(isset($_SESSION["correo"])){
                          
@@ -129,16 +152,12 @@
                     
                     
                 ?> 
-                 
-
-                <!--<li><a href="#">Services</a></li>
-
-                <li><a href="#">Contact</a></li>-->
 
            
                 </ul>
             </div>
-            <!-- /.navbar-collapse -->
+        
         </div>
-        <!-- /.container -->
-    </nav>
+        
+    </nav> -->
+<!-- FINAL -->    

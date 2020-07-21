@@ -86,6 +86,8 @@
 
 								</form>
 
+								<a href='registrar.php'>Registrarse</a>
+
 							</div><!-- Body-->
 
 						</div>

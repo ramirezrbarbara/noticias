@@ -59,15 +59,102 @@
                             <!-- BACKEND - CMS -->
                             
                           <small><?php echo "BIENVENIDO ", strtoupper($_SESSION["nombre"])." ".strtoupper($_SESSION["apellido"])?></small>
-                        </h1>
+                        </h1><br>
 
                     </div>
                 </div>
-       
                 <!-- /.row -->
                 
-       
+                <!-- Inicio -->
                 <div class="row">
+                    <div class="col-lg-3 col-6">
+                        <!-- small box -->
+                        <div class="small-box bg-info">
+                        <div class="inner">
+                            <h3><?php echo $entrada->get_numero_entradas();?></h3>
+                            <p style="color:white;">Entradas</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-clipboard"></i>
+                        </div>
+                        <a href="entradas.php" class="small-box-footer">Mas info<i class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    <!-- ./col -->
+                    <?php 
+                        if ($_SESSION["rol"]=="administrador") {
+                           echo '<div class="col-lg-3 col-6">
+                                    <div class="small-box bg-success">
+                                    <div class="inner">
+                                        <h3>'.$usuarios->get_numero_usuarios().'</h3>
+                                        <p style="color:white;">Usuarios</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="ion ion-person-stalker"></i>
+                                    </div>
+                                    <a href="usuarios.php" class="small-box-footer">Mas info<i class="fas fa-arrow-circle-right"></i></a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-6">
+                                    <div class="small-box bg-warning">
+                                    <div class="inner">
+                                        <h3>'.$categoria->get_numero_categorias().'</h3>
+                                        <p style="color:white;">Categorías</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="ion ion-podium"></i>
+                                    </div>
+                                    <a href="categorias.php" class="small-box-footer">Mas info <i class="fas fa-arrow-circle-right"></i></a>
+                                    </div>
+                                </div>';                                                  
+                        }
+                    ?>
+                    <!-- <div class="col-lg-3 col-6">
+                        
+                        <div class="small-box bg-success">
+                        <div class="inner">
+                            <h3><?php// echo $usuarios->get_numero_usuarios();?></h3>
+                            <p style="color:white;">Usuarios</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-person-stalker"></i>
+                        </div>
+                        <a href="usuarios.php" class="small-box-footer">Mas info<i class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-3 col-6">
+                        
+                        <div class="small-box bg-warning">
+                        <div class="inner">
+                            <h3><?php// echo $categoria->get_numero_categorias();?></h3>
+                            <p style="color:white;">Categorías</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-podium"></i>
+                        </div>
+                        <a href="categorias.php" class="small-box-footer">Mas info <i class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div> -->
+                    
+                    <div class="col-lg-3 col-6">
+                        <!-- small box -->
+                        <div class="small-box bg-danger">
+                        <div class="inner">
+                            <h3>1</h3>
+                            <p style="color:white;">Perfil</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-person"></i>
+                        </div>
+                        <a href="perfil.php" class="small-box-footer">Mas info <i class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    <!-- ./col -->
+                </div>
+                <!-- Final -->
+       
+                <!-- <div class="row">
                     <div class="col-lg-3 col-md-6" >
                         <div class="panel panel-green">
                             <div class="panel-heading">
@@ -76,7 +163,7 @@
                                         <i class="fa fa-file-text fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge"><?php echo $entrada->get_numero_entradas();?></div>
+                                        <div class="huge"><?php// echo $entrada->get_numero_entradas();?></div>
                                         <div>  Entradas</div>
                                     </div>
                                 </div>
@@ -90,7 +177,7 @@
                             </a>
                         </div>
                     </div>
-                    <!-- <div class="col-lg-3 col-md-6">
+                    <div class="col-lg-3 col-md-6">
                         <div class="panel panel-primary">
                             <div class="panel-heading">
                                 <div class="row">
@@ -100,7 +187,7 @@
                                     <div class="col-xs-9 text-right">
 
                                      
-                                       <div class="huge"><?php echo $comentario->get_numero_comentarios();?></div>
+                                       <div class="huge"><?php// echo $comentario->get_numero_comentarios();?></div>
            
                                       <div>Comentarios</div>
                                     </div>
@@ -114,7 +201,7 @@
                                 </div>
                             </a>
                         </div>
-                    </div> -->
+                    </div>
                     <div class="col-lg-3 col-md-6">
                         <div class="panel panel-red">
                             <div class="panel-heading">
@@ -124,7 +211,7 @@
                                     </div>
                                     <div class="col-xs-9 text-right">
 
-                                        <div class="huge"><?php echo $usuarios->get_numero_usuarios();?></div>
+                                        <div class="huge"><?php// echo $usuarios->get_numero_usuarios();?></div>
 
                                        
                                         <div> Usuarios</div>
@@ -149,7 +236,7 @@
                                     </div>
                                     <div class="col-xs-9 text-right">
 
-                                     <div class="huge"><?php echo $categoria->get_numero_categorias();?></div>
+                                     <div class="huge"><?php// echo $categoria->get_numero_categorias();?></div>
 
                                    <div>Categorías</div>
                                     </div>
@@ -164,7 +251,7 @@
                             </a>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <!-- /.row -->
                                 
 
@@ -211,7 +298,7 @@
                     }
                     </script>
                     
-                    <div id="columnchart_material" style="width: auto; height: 500px;"></div>   
+                    <div id="columnchart_material" style="width: 100%; height: 500px;"></div>   
                     
                 </div>
 

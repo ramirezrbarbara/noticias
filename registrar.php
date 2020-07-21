@@ -125,7 +125,7 @@ $pusher = new Pusher\Pusher("624bc5cd08c38b261c9a", "9cd28d70c5c4fbcf6847", "574
 <section id="login">
     <div class="container">
         <div class="row">
-            <div class="col-xs-6 col-xs-offset-3">
+            <div class="col-12 col-xs-offset-3">
                 <div class="form-wrap">
                 <h1>Registrar</h1>
                      <form action="" method="post">    
@@ -150,12 +150,12 @@ $pusher = new Pusher\Pusher("624bc5cd08c38b261c9a", "9cd28d70c5c4fbcf6847", "574
                           <input type="email" class="form-control" name="correo">
                       </div>
 
-                      <!-- CATEGORIAS ORGANIGRAMA --> 
-                    <div>Categoría</div><br>
+                    <!-- CATEGORIAS ORGANIGRAMA --> 
+                    <label>Categoría</label>                        
 
                     <div class="row d-flex text-left">
                         <div class="col-md-6 mb-3">
-                            <label for="ministerio"><i class="fas fa-map-marked-alt"></i>>>Ministerio</label>
+                            <label for="ministerio"><i class="far fa-arrow-alt-circle-right"></i>Ministerio</label>
                             <select class="form-control" id="ministerio" onChange="getSecretaria()"></select>
                         </div>
                     </div>
@@ -163,7 +163,7 @@ $pusher = new Pusher\Pusher("624bc5cd08c38b261c9a", "9cd28d70c5c4fbcf6847", "574
                     <div class="osecretaria" id="osecretaria" style="display: none">
                         <div class="row d-flex text-left">
                             <div class="col-md-6 mb-3">
-                                <label for="secretaria"><i class="fas fa-map-marked-alt"></i>>>Secretaria</label>
+                                <label for="secretaria"><i class="far fa-arrow-alt-circle-right"></i>Secretaria</label>
                                 <select class="form-control" id="secretaria" onChange="getSubSecretaria()"></select>
                             </div>
                         </div>
@@ -172,7 +172,7 @@ $pusher = new Pusher\Pusher("624bc5cd08c38b261c9a", "9cd28d70c5c4fbcf6847", "574
                     <div class="osubsecretaria" id="osubsecretaria" style="display: none">
                         <div class="row d-flex text-left">
                             <div class="col-md-6 mb-3">
-                                <label for="subsecretaria"><i class="fas fa-map-marked-alt"></i>>>SubSecretaria</label>
+                                <label for="subsecretaria"><i class="far fa-arrow-alt-circle-right"></i>SubSecretaria</label>
                                 <select class="form-control" id="subsecretaria" onChange="getDirecciongral()"></select>
                             </div>
                         </div>
@@ -181,7 +181,7 @@ $pusher = new Pusher\Pusher("624bc5cd08c38b261c9a", "9cd28d70c5c4fbcf6847", "574
                     <div class="odirecciongral" id="odirecciongral" style="display: none">
                         <div class="row d-flex text-left">
                             <div class="col-md-6 mb-3">
-                                <label for="direcciongral"><i class="fas fa-map-marked-alt"></i>>>Direcciongral</label>
+                                <label for="direcciongral"><i class="far fa-arrow-alt-circle-right"></i>Direcciongral</label>
                                 <select class="form-control" id="direcciongral" onChange="getDireccion()"></select>
                             </div>
                         </div>
@@ -190,7 +190,7 @@ $pusher = new Pusher\Pusher("624bc5cd08c38b261c9a", "9cd28d70c5c4fbcf6847", "574
                     <div class="odireccion" id="odireccion" style="display: none">
                         <div class="row d-flex text-left">
                             <div class="col-md-6 mb-3">
-                                <label for="direccion"><i class="fas fa-map-marked-alt"></i>>>Direccion</label>
+                                <label for="direccion"><i class="far fa-arrow-alt-circle-right"></i>Direccion</label>
                                 <select class="form-control" id="direccion" onChange="getCoordinacion()"></select>
                             </div>
                         </div>
@@ -199,7 +199,7 @@ $pusher = new Pusher\Pusher("624bc5cd08c38b261c9a", "9cd28d70c5c4fbcf6847", "574
                     <div class="ocoordinacion" id="ocoordinacion" style="display: none">
                         <div class="row d-flex text-left">
                             <div class="col-md-6 mb-3">
-                                <label for="coordinacion"><i class="fas fa-map-marked-alt"></i>>>Coordinacion</label>
+                                <label for="coordinacion"><i class="far fa-arrow-alt-circle-right"></i>Coordinacion</label>
                                 <select class="form-control" id="coordinacion"></select>
                             </div>    
                         </div>
