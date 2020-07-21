@@ -39,7 +39,7 @@
           
       }
       
-       public function insertar_usuario($usuario,$password,$nombre,$apellido,$correo,$imagen,$rol){
+       public function insertar_usuario($usuario,$password,$nombre,$apellido,$correo,$imagen,$rol,$idd,$iddDes){
            
           
            /*validamos que los campos no esten vacios*/
@@ -107,7 +107,7 @@
                       $pass_encriptado= password_hash($password,PASSWORD_DEFAULT);
 
 
-                       $sql="insert into usuarios values(null,?,?,?,?,?,'imagen',?,'0')";
+                       $sql="insert into usuarios values(null,?,?,?,?,?,'imagen',?,?,?,'0')";
 
                        $resultado= $this->db->prepare($sql);
 
@@ -117,8 +117,11 @@
                        $resultado->bindValue(4,$_POST["apellido"]);
                        $resultado->bindValue(5,$_POST["correo"]);
                        $resultado->bindValue(6,$_POST["rol"]);
+                       $resultado->bindValue(7,$idd);
+                       $resultado->bindValue(8,$iddDes);
                        //$resultado->bindValue(7,$_POST["imagen"]);
-
+                     
+                       
 
                          if(!$resultado->execute()){
 

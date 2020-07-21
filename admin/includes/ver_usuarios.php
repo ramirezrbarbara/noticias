@@ -30,7 +30,7 @@
     }
 
 ?>
-<h1 class="text-primary">Usuarios</h1>
+<h1 class="text-primary text-center">USUARIOS</h1>
 
 <form action="" method='post'>
 
@@ -50,28 +50,26 @@
         </div>--> 
 
             
-<div class="col-xs-4">
+<!-- <div class="col-xs-4">
+    <input type="submit" name="submit" class="btn btn-success" value="Aplicar">
+    <a class="btn btn-primary" href="usuarios.php?accion=add_usuario">Añadir Nuevo</a>
 
-<input type="submit" name="submit" class="btn btn-success" value="Aplicar">
-<a class="btn btn-primary" href="usuarios.php?accion=add_usuario">Añadir Nuevo</a>
-
- </div>
+ </div> -->
          
    
 
-                <thead>
+                <thead class="table table-striped  thead-dark" >
                     <tr>
-                <th><input id="selecciona_todo" type="checkbox"></th>
-                        <th>Id</th>
+                <!-- <th><input id="selecciona_todo" type="checkbox"></th>
+                        <th>Id</th> -->
                         <th>Usuario</th>
                         <th>Nombre</th>
                         <th>Apellido</th>
                         <th>Email</th>
                         <th>Rol</th>
-                        <th>Rol 1</th>
-                        <th>Rol 2</th>
-                        <th>Editar</th>
-                        <th>Eliminar</th>
+                        <!-- <th>Rol 1</th>
+                        <th>Rol 2</th> -->
+                        <th>Accion</th>
                     </tr>
                 </thead>
                 
@@ -80,8 +78,8 @@
                <?php for($i=0;$i<count($datos);$i++){?>
   
                     <tr>
-                       <td><input class='checkBoxes' type='checkbox' name='checkBoxArray[]' value='1'></td>
-                       <td><?php echo $datos[$i]["id_usuario"];?></td>
+                       <!-- <td><input class='checkBoxes' type='checkbox' name='checkBoxArray[]' value='1'></td>
+                       <td><?php echo $datos[$i]["id_usuario"];?></td> -->
                        <td><?php echo $datos[$i]["usuario"];?></td>
                        
                        <td><?php echo $datos[$i]["nombre"];?></td>
@@ -94,16 +92,15 @@
                        <td><?php echo $datos[$i]["rol"];?></td>
                       
                        
-                      
+<!--                       
                       <td><a  href='usuarios.php?cambiar_a_administrador=<?php echo $datos[$i]["id_usuario"];?>'>  administrador</a></td>
                       
                       <td><a  href='usuarios.php?cambiar_a_suscriptor=<?php echo $datos[$i]["id_usuario"];?>'>  suscriptor</a></td>   
                         
-                        
-                       <td> <a class='btn btn-success' href='usuarios.php?accion=edit_usuario&id_usuario=<?php echo $datos[$i]["id_usuario"];?>'><i class="fa fa-pencil"></i>  Editar</a>  </td>
-                      
-                      
-                        <td> <a onClick="javascript:return confirm('Estas seguro que lo quieres eliminar?');" class='btn btn-danger' href='usuarios.php?eliminar=<?php echo $datos[$i]["id_usuario"];?>'><i class="fa fa-trash"></i>  Eliminar</a>  </td>
+                         -->
+                       <td><div class="btn-group">
+                        <a class='btn btn-success' href='usuarios.php?accion=edit_usuario&id_usuario=<?php echo $datos[$i]["id_usuario"];?>'><i class="fa fa-pencil"></i> </a> 
+                        <a onClick="javascript:return confirm('Estas seguro que lo quieres eliminar?');" class='btn btn-danger' href='usuarios.php?eliminar=<?php echo $datos[$i]["id_usuario"];?>'><i class="fa fa-trash"></i></a></div></td>
                         
                        
                    </tr>

@@ -19,6 +19,8 @@
           $apellido=$_POST["apellido"]; 
           $correo=$_POST["correo"];        
           $imagen="imagen";
+          $idd=$_POST["iddValor"];
+          $iddDes=$_POST["iddDesc"];
            
            /*$imagen=$_FILES["entrada_imagen"]["name"];
           $imagen_temp=$_FILES["entrada_imagen"]["tmp_name"]; 
@@ -28,7 +30,7 @@
 
            
             /*si se envia el formulario registramos el usuario*/
-        $usuarios->insertar_usuario($usuario,$pass_encriptado,$nombre,$apellido,$correo,$imagen,$rol);
+        $usuarios->insertar_usuario($usuario,$pass_encriptado,$nombre,$apellido,$correo,$imagen,$rol,$idd,$iddDes);
            
        }
 
@@ -144,18 +146,75 @@
          <label for="post_content">Email</label>
           <input type="email" class="form-control" name="correo">
       </div>
+
+       <!-- CATEGORIAS ORGANIGRAMA --> 
+       <div>Categoría</div><br>
+
+        <div class="row d-flex text-left">
+            <div class="col-md-6 mb-3">
+                <label for="ministerio"><i class="fas fa-map-marked-alt"></i>>>Ministerio</label>
+                <select class="form-control" id="ministerio" onChange="getSecretaria()"></select>
+            </div>
+        </div>
+
+        <div class="osecretaria" id="osecretaria" style="display: none">
+            <div class="row d-flex text-left">
+                <div class="col-md-6 mb-3">
+                    <label for="secretaria"><i class="fas fa-map-marked-alt"></i>>>Secretaria</label>
+                    <select class="form-control" id="secretaria" onChange="getSubSecretaria()"></select>
+                </div>
+            </div>
+        </div>
+            
+        <div class="osubsecretaria" id="osubsecretaria" style="display: none">
+            <div class="row d-flex text-left">
+                <div class="col-md-6 mb-3">
+                    <label for="subsecretaria"><i class="fas fa-map-marked-alt"></i>>>SubSecretaria</label>
+                    <select class="form-control" id="subsecretaria" onChange="getDirecciongral()"></select>
+                </div>
+            </div>
+        </div>
+
+        <div class="odirecciongral" id="odirecciongral" style="display: none">
+            <div class="row d-flex text-left">
+                <div class="col-md-6 mb-3">
+                    <label for="direcciongral"><i class="fas fa-map-marked-alt"></i>>>Direcciongral</label>
+                    <select class="form-control" id="direcciongral" onChange="getDireccion()"></select>
+                </div>
+            </div>
+        </div>    
+
+        <div class="odireccion" id="odireccion" style="display: none">
+            <div class="row d-flex text-left">
+                <div class="col-md-6 mb-3">
+                    <label for="direccion"><i class="fas fa-map-marked-alt"></i>>>Direccion</label>
+                    <select class="form-control" id="direccion" onChange="getCoordinacion()"></select>
+                </div>
+            </div>
+        </div>    
+            
+        <div class="ocoordinacion" id="ocoordinacion" style="display: none">
+            <div class="row d-flex text-left">
+                <div class="col-md-6 mb-3">
+                    <label for="coordinacion"><i class="fas fa-map-marked-alt"></i>>>Coordinacion</label>
+                    <select class="form-control" id="coordinacion"></select>
+                </div>    
+            </div>
+        </div>      
+        <!-- Fin categoria -->
       
       <div class="form-group">
          <label for="post_content">Password</label>
           <input type="password" class="form-control" name="password">
       </div>
       
-      
-      
-
        <div class="form-group">
-          <input class="btn btn-primary" type="submit" name="crear_usuario" value="Añadir usuario">
+          <input class="btn btn-primary" type="submit" name="crear_usuario" id="editar_usuario" value="Añadir usuario">
       </div>
+
+      <input type="hidden" name="iddValor" id="iddValor" value="">
+      <input type="hidden" name="iddDesc" id="iddDesc" value="">
+
 
 
 </form>
