@@ -159,7 +159,7 @@
      
      
          <div class="form-group">
-       <div>Rol de usuario</div><br>
+       <label>Rol de usuario</label><br>
        <select name="rol" id="">
        
         <option value="<?php echo $datos[0]["rol"]?>"><?php echo $datos[0]["rol"]?></option>
@@ -185,7 +185,7 @@
       </div>
 
     <!-- CATEGORIAS ORGANIGRAMA --> 
-    <div>Categoría</div><br>   
+    <label>Categoría</label>  
     <div class="row d-flex text-left">
         <div class="col-md-6 mb-3">        
             <input type="idddescripcion" value="<?php echo $datos[0]["idddesc"]?>" class="form-control" name="idddescripcion" disabled>

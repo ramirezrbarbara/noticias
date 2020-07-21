@@ -114,7 +114,7 @@
           <input type="text" class="form-control" name="apellido">
       </div>
      
-     
+    <label>Rol de usuario</label><br>
          <div class="form-group">
        
        <select name="rol" id="">
@@ -148,11 +148,11 @@
       </div>
 
        <!-- CATEGORIAS ORGANIGRAMA --> 
-       <div>Categoría</div><br>
+       <label>Categoría</label> 
 
         <div class="row d-flex text-left">
             <div class="col-md-6 mb-3">
-                <label for="ministerio"><i class="fas fa-map-marked-alt"></i>>>Ministerio</label>
+                <label for="ministerio"><i class="far fa-arrow-alt-circle-right"></i>Ministerio</label>
                 <select class="form-control" id="ministerio" onChange="getSecretaria()"></select>
             </div>
         </div>
@@ -160,7 +160,7 @@
         <div class="osecretaria" id="osecretaria" style="display: none">
             <div class="row d-flex text-left">
                 <div class="col-md-6 mb-3">
-                    <label for="secretaria"><i class="fas fa-map-marked-alt"></i>>>Secretaria</label>
+                    <label for="secretaria"><i class="far fa-arrow-alt-circle-right"></i>Secretaria</label>
                     <select class="form-control" id="secretaria" onChange="getSubSecretaria()"></select>
                 </div>
             </div>
@@ -169,7 +169,7 @@
         <div class="osubsecretaria" id="osubsecretaria" style="display: none">
             <div class="row d-flex text-left">
                 <div class="col-md-6 mb-3">
-                    <label for="subsecretaria"><i class="fas fa-map-marked-alt"></i>>>SubSecretaria</label>
+                    <label for="subsecretaria"><i class="far fa-arrow-alt-circle-right"></i>SubSecretaria</label>
                     <select class="form-control" id="subsecretaria" onChange="getDirecciongral()"></select>
                 </div>
             </div>
@@ -178,7 +178,7 @@
         <div class="odirecciongral" id="odirecciongral" style="display: none">
             <div class="row d-flex text-left">
                 <div class="col-md-6 mb-3">
-                    <label for="direcciongral"><i class="fas fa-map-marked-alt"></i>>>Direcciongral</label>
+                    <label for="direcciongral"><i class="far fa-arrow-alt-circle-right"></i>Direcciongral</label>
                     <select class="form-control" id="direcciongral" onChange="getDireccion()"></select>
                 </div>
             </div>
@@ -187,7 +187,7 @@
         <div class="odireccion" id="odireccion" style="display: none">
             <div class="row d-flex text-left">
                 <div class="col-md-6 mb-3">
-                    <label for="direccion"><i class="fas fa-map-marked-alt"></i>>>Direccion</label>
+                    <label for="direccion"><i class="far fa-arrow-alt-circle-right"></i>Direccion</label>
                     <select class="form-control" id="direccion" onChange="getCoordinacion()"></select>
                 </div>
             </div>
@@ -196,7 +196,7 @@
         <div class="ocoordinacion" id="ocoordinacion" style="display: none">
             <div class="row d-flex text-left">
                 <div class="col-md-6 mb-3">
-                    <label for="coordinacion"><i class="fas fa-map-marked-alt"></i>>>Coordinacion</label>
+                    <label for="coordinacion"><i class="far fa-arrow-alt-circle-right"></i>Coordinacion</label>
                     <select class="form-control" id="coordinacion"></select>
                 </div>    
             </div>
