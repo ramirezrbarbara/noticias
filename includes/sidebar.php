@@ -13,7 +13,7 @@
                         <input name="buscar" type="text" class="form-control">
                         <span class="input-group-btn">
                             <button name="submit" class="btn btn-default" type="submit">
-                                <span class="glyphicon glyphicon-search"></span>
+                                <i class="fa fa-search"></i>
                         </button>
                         </span>
                     </div>
@@ -24,63 +24,63 @@
                 
                 
   <!--Login -->
-    <div class="well">
+    <!-- <div class="well">
     
      <?php
       
           /*validamos si existe el envio del formulario*/
-          if(isset($_POST["login"])){
+        //   if(isset($_POST["login"])){
               
-             $usuarios->login($_POST["correo"],$_POST["password"]);
+        //      $usuarios->login($_POST["correo"],$_POST["password"]);
        
           
-          } 
+        //   } 
         
         
       ?>
       
       <?php
         
-          if(isset($_GET["m"])){
+        //   if(isset($_GET["m"])){
               
-              switch($_GET["m"]){
+        //       switch($_GET["m"]){
                   
-                  case "1":
-                  ?>
-                   <h2 style='color:red'>Debe loguearse</h2>
-                  <?php
-                  break;
+        //           case "1":
+        //           ?>
+        //            <h2 style='color:red'>Debe loguearse</h2>
+        //           <?php
+        //           break;
                       
-                  case "2":
-                  ?>
-                   <h2 style='color:red'>ha cerrado sesion</h2>
-                  <?php
-                  break;
-              } 
-          }
+        //           case "2":
+        //           ?>
+        //            <h2 style='color:red'>ha cerrado sesion</h2>
+        //           <?php
+        //           break;
+        //       } 
+        //   }
         
         ?>
          
-        <!--validacion si estas logueado o no-->
+        validacion si estas logueado o no-->
         
          <?php
         
-            if(isset($_SESSION["rol"])){
+            // if(isset($_SESSION["rol"])){
                 
-                ?>
-                 <h4>Estas logueado como <strong><?php echo $_SESSION["usuario"]?></strong></h4>
+            //     ?>
+            <!-- //      <h4>Estas logueado como <strong><?php echo $_SESSION["usuario"]?></strong></h4>
                  
-                 <a href="includes/logout.php" class="btn btn-primary">Logout</a>
-                 
+            //      <a href="includes/logout.php" class="btn btn-primary">Logout</a>
+                  -->
                  
                 <?php
                     
                 
-            }else{
+            // }else{
                 
          ?>
                    
-             <h4>Login</h4>
+             <!-- <h4>Login</h4>
 
                 <form method="post">
                 <div class="form-group">
@@ -102,15 +102,15 @@
 
                     </div>
 
-                </form><!--search form-->
+                </form>search form -->
                 <!-- /.input-group -->
           
           <?php
                  
-            }
+          //  }
         
           ?>
-    </div>
+    <!-- </div>  -->
                 
                 <!-- Blog Categories Well -->
                 <div class="well">
@@ -162,7 +162,16 @@
                 </div>
                 
                 <!-- Side Widget Well -->
-                 <?php require_once "widget.php"; ?>
+                <div>
+                    <h4 style="color:black;">Últimas Entradas</h4>
+                
+                    <ol>
+                        <?php $entrada->get_ultimas_entradas();?>
+                    
+                    </ol>
+                                    
+                </div>
+                 <?php // require_once "widget.php"; ?>
 
             </div>
              

@@ -106,7 +106,7 @@
                                 <img class="img-responsive" src="
                                 <?php                                 
                                     echo substr($entrada_imagen,45);
-                                ?>" alt="">
+                                ?>"  width="600px" alt="">
                                 </a>
                                 <hr>
                                 <p><?php echo $entrada_contenido?></p>

@@ -1,9 +1,7 @@
 
  
    <div class="well">
- 
-<h4 class="enlace">Últimas Entradas</h4>
-  
+     <h2 style="color:blak;">Últimas Entradas</h2>
     <ol>
          <?php $entrada->get_ultimas_entradas();?>
     

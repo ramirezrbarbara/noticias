@@ -2,7 +2,7 @@
    session_start();
    session_destroy();
  
-   header("Location:../index.php?m=2");
+   header("Location:../login.php?m=2");
 
 
 ?>

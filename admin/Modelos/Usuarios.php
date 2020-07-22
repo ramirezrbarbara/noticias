@@ -1,6 +1,8 @@
 <?php
 
 
+  use PHPMailer\PHPMailer\PHPMailer;
+  use PHPMailer\PHPMailer\Exception;
   class Usuarios extends Conectar{
       
     private $db;  
@@ -9,7 +11,6 @@
    
       
       public function __construct(){
-          
         $this->db= Conectar::conexion();   
         $this->usuarios=array();  
         $this->usuario_por_id=array(); 
@@ -699,191 +700,228 @@
     }//cierre de la function
       
        
-       public function usuarios_online(){
-        
-           
-           $session = session_id();
-           $time= time();
-           $time_out_in_seconds=30;
-           $time_out= $time - $time_out_in_seconds;
-           
-           
-            $sql="select * from usuarios_online where session=?";
-            
-            $resultado=$this->db->prepare($sql);
-           
-            $resultado->bindValue(1,$session);
-           
-              if(!$resultado->execute()){
+      public function usuarios_online(){
+      
+          
+          $session = session_id();
+          $time= time();
+          $time_out_in_seconds=30;
+          $time_out= $time - $time_out_in_seconds;
+          
+          
+          $sql="select * from usuarios_online where session=?";
+          
+          $resultado=$this->db->prepare($sql);
+          
+          $resultado->bindValue(1,$session);
+          
+            if(!$resultado->execute()){
 
-                 echo "<h2 style='color:red'>Fallo en la consulta</h2>";
-                
+                echo "<h2 style='color:red'>Fallo en la consulta</h2>";
+              
 
-                }else {
-                     
-                    $count= $resultado->rowCount();
-                }
-           
-           /**************************************************/
-           
-           if($count==0){
-           
-               /*si nadie esta online entonces inserta el $session y el $time*/
+              }else {
+                    
+                  $count= $resultado->rowCount();
+              }
+          
+          /**************************************************/
+          
+          if($count==0){
+          
+              /*si nadie esta online entonces inserta el $session y el $time*/
 
 
-                $sql="insert into usuarios_online
-                values(null,?,?)";
+              $sql="insert into usuarios_online
+              values(null,?,?)";
 
-                $resultado=$this->db->prepare($sql);
+              $resultado=$this->db->prepare($sql);
 
-                $resultado->bindValue(1,$session);
-                $resultado->bindValue(2,$time);
+              $resultado->bindValue(1,$session);
+              $resultado->bindValue(2,$time);
 
-                    if(!$resultado->execute()){
+                  if(!$resultado->execute()){
 
-                      echo "<h2 style='color:red'>Fallo en la consulta</h2>";
+                    echo "<h2 style='color:red'>Fallo en la consulta</h2>";
 
-                    }
-               
-           
-             } else {
-           
-                   $sql="update usuarios_online set
+                  }
+              
+          
+            } else {
+          
+                  $sql="update usuarios_online set
 
-                     time=?
-                     where 
-                     session=?
-                    ";
+                    time=?
+                    where 
+                    session=?
+                  ";
 
-                    $resultado=$this->db->prepare($sql);
+                  $resultado=$this->db->prepare($sql);
 
-                    $resultado->bindValue(1,$time);
-                    $resultado->bindValue(2,$session);
+                  $resultado->bindValue(1,$time);
+                  $resultado->bindValue(2,$session);
 
-                        if(!$resultado->execute()){
+                      if(!$resultado->execute()){
 
-                          echo "<h2 style='color:red'>Fallo en la consulta</h2>";
+                        echo "<h2 style='color:red'>Fallo en la consulta</h2>";
 
-                        }
-               
-           }
+                      }
+              
+          }
 
-           /***************************************************/
-           
-            $sql="select * from usuarios_online where time > ?";
-            
-            $resultado=$this->db->prepare($sql);
-           
-            $resultado->bindValue(1,$time_out);
-           
-              if(!$resultado->execute()){
+          /***************************************************/
+          
+          $sql="select * from usuarios_online where time > ?";
+          
+          $resultado=$this->db->prepare($sql);
+          
+          $resultado->bindValue(1,$time_out);
+          
+            if(!$resultado->execute()){
 
-                  echo "<h2 style='color:red'>Fallo en la consulta</h2>";
+                echo "<h2 style='color:red'>Fallo en la consulta</h2>";
 
-                }else {
-                     
-                    return $resultado->rowCount();
-                } 
-        }
+              }else {
+                    
+                  return $resultado->rowCount();
+              } 
+      }
       
         /*validamos si existe un correo en la tabla usuarios de la bd para resetear el password*/
-         public function get_correo_en_bd($correo,$token){
+  public function get_correo_en_bd($correo,$token){
+    $sql="select * from usuarios where correo=?";
+    $resultado=$this->db->prepare($sql);      
+    $resultado->bindValue(1,$correo);
           
-           
-           $sql="select * from usuarios where correo=?";
+    if(!$resultado->execute()){
+      echo "<h2 class='text-center' style='color:red'>Fallo en la consulta</h2>";  
+
+    }else{
+        /*existe el correo*/
+      if($resultado->rowCount()>0){
+          $sql="update usuarios set 
+
+          token=?
+          where
+          correo=?
+
+        ";
+
+        $resultado=$this->db->prepare($sql);
+
+        $resultado->bindValue(1,$token);
+        $resultado->bindValue(2,$correo);
+
+          if(!$resultado->execute()){
+
+            echo "<h2 class='text-center' style='color:red'>Fallo en la consulta</h2>";
+              
+          } else {
+
           
-           $resultado=$this->db->prepare($sql);
-          
-           $resultado->bindValue(1,$correo);
-          
-             if(!$resultado->execute()){
-                 
-                 echo "<h2 class='text-center' style='color:red'>Fallo en la consulta</h2>";
-                 
-             }else{
-                  /*existe el correo*/
-                  if($resultado->rowCount()>0){
+            require 'configMail/PHPMailer/PHPMailer.php';
+            require 'configMail/PHPMailer/Exception.php';
+            require 'configMail/PHPMailer/SMTP.php';
+            
+            $mail = new PHPMailer(true);
+
+            try {
+              //Configuracion de hosting
+              $mail->CharSet = 'UTF-8';
+              $mail->isSMTP();
+              $mail->SMTPAuth = false;
+              $mail->From = 'mesadeayuda@mininterior.gob.ar'; //$correo;
+              $mail->Host = 'smtp.mininterior.gob.ar';
+              $mail->Port= 25;
+              $mail->SMTPAutoTLS=false;
+              $mail->SMTPSecure = false;
+              //Destinatario
+              $mail->setFrom('mesadeayuda@mininterior.gob.ar', 'Token');
+              $mail->addAddress($correo);                
+              //Contenido
+              $mail->isHTML(true);
+              $mail->Subject = 'Autenticación de doble factor.';
+                /*COMENZAR - enviamos el correo*/
+                /*IMPORTANTE: CUANDO VAYAS A SUBIR EL PROYECTO AL HOSTING PONER EL NOMBRE DEL DOMINIO DEL HOSTING EN EL href del ancla href='http://tudominio.com/ que se encuentra en $cuerpo*/
+              $mail->Body  .='  <html>';
+              $mail->Body  .='<head>';
+              $mail->Body  .='<title></title> ';
+              $mail->Body  .=' </head> ';
+              $mail->Body  .='<body>'; 
+              $mail->Body  .='<h1 style="color:black">PROYECTO CMS</h1>';
+              $mail->Body  .='<p>Por favor dar click en el link para resetear el password';
+              $mail->Body  .=' <a href="https://sistemas.mininterior.gob.ar/noticias/resetear.php?correo=".$correo."&token=".$token.">'; 
+              $mail->Body  .=' https://sistemas.mininterior.gob.ar/noticias/resetear.php?correo=".$correo."&token=".$token."</a>';
+              $mail->Body  .='</p>';
+              $mail->Body  .='</body>';
+              $mail->Body  .='</html>'; 
+                      $mail->send();
+                       // $correo_enviado = true;
+                      echo "<h2 class='text-center' style='color:green'>Se ha enviado un correo, por favor dar click en el link para resetear el password</h2>"; 
+                      exit();
+            } catch (Exception $e) {
+                  echo "<h2 class='text-center' style='color:red'>No se envió el correo</h2>";               
+            }
                       
-                      
-                          /*editamos el token*/
-                          $sql="update usuarios set 
+                  // $mail = new PHPMailer(true);  
+                  //     /*COMENZAR - enviamos el correo*/
+                  //     /*IMPORTANTE: CUANDO VAYAS A SUBIR EL PROYECTO AL HOSTING PONER EL NOMBRE DEL DOMINIO DEL HOSTING EN EL href del ancla href='http://tudominio.com/ que se encuentra en $cuerpo*/
 
-                             token=?
-                             where
-                             correo=?
-
-                           ";
-
-                           $resultado=$this->db->prepare($sql);
-
-                           $resultado->bindValue(1,$token);
-                           $resultado->bindValue(2,$correo);
-
-                             if(!$resultado->execute()){
-
-                                  echo "<h2 class='text-center' style='color:red'>Fallo en la consulta</h2>";
-                                  
+                  //       $to         = $correo;
+                  //       $asunto   = "Proyecto CMS, resetear password";
+                  //       $cuerpo       = "
+                        
+                  //           <html> 
+                  //           <head> 
+                  //           <title></title> 
+                  //           </head> 
+                  //           <body> 
                             
-                             } else {
-                                 
-                                  /*COMENZAR - enviamos el correo*/
-                                  /*IMPORTANTE: CUANDO VAYAS A SUBIR EL PROYECTO AL HOSTING PONER EL NOMBRE DEL DOMINIO DEL HOSTING EN EL href del ancla href='http://tudominio.com/ que se encuentra en $cuerpo*/
+                  //           <h1 style='color:black'>PROYECTO CMS</h1>
+                        
+                  //           <p>Por favor dar click en el link para resetear el password
+                        
+                  //            <a href='https://sistemas.mininterior.gob.ar/noticias/resetear.php?correo=".$correo."&token=".$token."'> 
+                  //            https://sistemas.mininterior.gob.ar/noticias/resetear.php?correo=".$correo."&token=".$token."</a>
+                        
+                        
+                  //            </p>
+                        
+                  //           </body> 
+                  //           </html> 
+                        
+                  //      ";
+                        
+                  //          //para el envío en formato HTML 
+                  //          $cabeceras = "MIME-Version: 1.0\r\n"; 
+                  //          $cabeceras .= "Content-type: text/html; charset=iso-8859-1\r\n"; 
 
-                                    $to         = $correo;
-                                    $asunto   = "Proyecto CMS, resetear password";
-                                    $cuerpo       = "
-                                    
-                                        <html> 
-                                        <head> 
-                                        <title></title> 
-                                        </head> 
-                                        <body> 
-                                        
-                                        <h1 style='color:black'>PROYECTO CMS</h1>
-                                    
-                                        <p>Por favor dar click en el link para resetear el password
-                                    
-                                         <a href='https://sistemas.mininterior.gob.ar/noticias/resetear.php?correo=".$correo."&token=".$token."'> 
-                                         https://sistemas.mininterior.gob.ar/noticias/resetear.php?correo=".$correo."&token=".$token."</a>
-                                    
-                                    
-                                         </p>
-                                    
-                                        </body> 
-                                        </html> 
-                                   
-                                   ";
-                                   
-                                       //para el envío en formato HTML 
-                                       $cabeceras = "MIME-Version: 1.0\r\n"; 
-                                       $cabeceras .= "Content-type: text/html; charset=iso-8859-1\r\n"; 
+                  //           /*validando el envio del correo*/
+                  //            if(mail($to,$asunto,$cuerpo,$cabeceras)){
+                                  
+                  //               $correo_enviado = true;
 
-                                        /*validando el envio del correo*/
-                                         if(mail($to,$asunto,$cuerpo,$cabeceras)){
-                                             
-                                            $correo_enviado = true;
-
-                                            echo "<h2 class='text-center' style='color:green'>Se ha enviado un correo, por favor dar click en el link para resetear el password</h2>"; 
-                                             
-                                            exit();
-                                 
-                                         }else {
-
-                                            echo "<h2 class='text-center' style='color:red'>No se envió el correo</h2>";  
-                                         }  
-  
-                                     /*FIN - enviamos el correo*/
-                                 
-                             }
+                  //               echo "<h2 class='text-center' style='color:green'>Se ha enviado un correo, por favor dar click en el link para resetear el password</h2>"; 
+                                  
+                  //               exit();
                       
-                  
-                  }else{
-                     /*no existe el correo en la bd*/
-                      echo "<h2 class='text-center' style='color:red'>El correo ingresado no existe en la base de datos</h2>";
+                  //            }else {
+
+                  //               echo "<h2 class='text-center' style='color:red'>No se envió el correo</h2>";  
+                  //            }  
+
+                          /*FIN - enviamos el correo*/
+                      
                   }
-             }
           
+      
+      }else{
+          /*no existe el correo en la bd*/
+        echo "<h2 class='text-center' style='color:red'>El correo ingresado no existe en la base de datos</h2>";
       }
+    }
+          
+  }
       
       
         public function login($correo,$password){

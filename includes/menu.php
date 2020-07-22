@@ -2,10 +2,10 @@
     <nav class="navbar navbar-expand navbar-orange navbar-light">                
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                <a class="nav-link" data-widget="pushmenu" href="index.php" role="button"><i class="far fa-newspaper" style="font-size:25px"></i></a>
             </li>
             <li class="nav-item d-none d-sm-inline-block">
-                <a href="login.php" class="nav-link">Inicio</a>
+                <a href="login.php" class="nav-link">Login</a>
             </li>
             <li class="nav-item d-none d-sm-inline-block">
                 <!-- <a href="#" class="nav-link">Contacto</a> -->                

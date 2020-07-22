@@ -124,7 +124,7 @@ $pusher = new Pusher\Pusher("624bc5cd08c38b261c9a", "9cd28d70c5c4fbcf6847", "574
     
 <section id="login">
     <div class="container">
-        <div class="row">
+        <div class="row" >
             <div class="col-12 col-xs-offset-3">
                 <div class="form-wrap">
                 <h1>Registrar</h1>

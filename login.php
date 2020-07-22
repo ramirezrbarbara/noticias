@@ -82,6 +82,10 @@
 
 										<input name="login" class="btn btn-lg btn-primary btn-block" value="Login" type="submit">
 									</div>
+									<div class="form-group">
+
+										<a href="recuperar_password.php">¿Olvidó su Password?</a>
+									</div>
 
 
 								</form>
