@@ -116,10 +116,34 @@
           
                              <?php
                           
-                          }
+                          } ?>
+                           <nav aria-label="...">
+                            <ul class="pagination pagination-sm no-margin pull-right">
+
+                            <?php
+                            
+                                for($i=1;$i<=$num_entradas;$i++){
+                                    
+                                    if($i==$pagina){
+                                    
+                                    echo "<a class='active_link border border-primary'  style='padding: 1em;' href='index.php?pagina=$i'><li class='page-item disabled bold'>$i</li></a>";
+                                        
+                                    }else {
+                                        
+                                        echo "<a class='active_link border border-primary'  style='padding: 1em;' href='index.php?pagina=$i'><li class='page-item disabled'>$i</li></a>"; 
+                                    }
+                                    
+                                }
+                                
+                                
+                                ?>
+                        
+
+                            </ul>
+                        </nav> <?php
                         
                         /*no hay registros publicados*/    
-                        }else {
+                          }else {
                              
                              echo "<h2 style='color:red' class='text-center'>No hay entradas publicadas</h2>";
                         }
@@ -144,30 +168,7 @@
         <hr>
 
 
-        <ul class="pager">
-
-           <?php
-            
-            
-              for($i=1;$i<=$num_entradas;$i++){
-                  
-                if($i==$pagina){
-                  
-                  echo "<li><a class='active_link' href='index.php?pagina=$i'>$i</a></li>";
-                    
-                }else {
-                    
-                    echo "<li><a href='index.php?pagina=$i'>$i</a></li>"; 
-                }
-                  
-              }
-            
-            
-            ?>
        
-
-        </ul>
-
    
 
 <?php require_once "includes/footer.php";?>

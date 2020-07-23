@@ -850,13 +850,13 @@
               $mail->Body  .='<body>'; 
               $mail->Body  .='<h1 style="color:black">PROYECTO CMS</h1>';
               $mail->Body  .='<p>Por favor dar click en el link para resetear el password';
-              $mail->Body  .=' <a href="https://sistemas.mininterior.gob.ar/noticias/resetear.php?correo=".$correo."&token=".$token.">'; 
-              $mail->Body  .=' https://sistemas.mininterior.gob.ar/noticias/resetear.php?correo=".$correo."&token=".$token."</a>';
+              $mail->Body  .=' <a href="https://sistemas.mininterior.gob.ar/noticias/resetear.php?correo='.$correo.'&token='.$token.'>'; 
+              $mail->Body  .=' https://sistemas.mininterior.gob.ar/noticias/resetear.php?correo='.$correo.'&token='.$token.'</a>';
               $mail->Body  .='</p>';
               $mail->Body  .='</body>';
               $mail->Body  .='</html>'; 
                       $mail->send();
-                       // $correo_enviado = true;
+                      $correo_enviado = true;
                       echo "<h2 class='text-center' style='color:green'>Se ha enviado un correo, por favor dar click en el link para resetear el password</h2>"; 
                       exit();
             } catch (Exception $e) {
