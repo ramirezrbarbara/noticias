@@ -46,7 +46,9 @@
                               $entrada_autor=$reg["entrada_autor"];
                               $entrada_fecha=date("d-m-Y",strtotime($reg["entrada_fecha"]));
                               $entrada_imagen=$reg["entrada_imagen"];
-                              $entrada_contenido=$reg["entrada_contenido"];
+                              //$entrada_contenido=$reg["entrada_contenido"];
+                              $entrada_contenido=strip_tags(substr($reg["entrada_contenido"],0,100));
+
                               
                              ?>
                              
@@ -64,9 +66,14 @@
                                 </p>
                                 <p><span class="glyphicon glyphicon-time"></span> <?php echo $entrada_fecha?></p>
                                 <hr>
-                                <img class="img-responsive" src="images/<?php echo $entrada_imagen?>" alt="">
+                                <a href="entrada.php?id_entrada=<?php echo $id_entrada?>">
+                                    <!-- <img class="img-responsive" src="images/<?php //echo $entrada_imagen?>" alt=""> -->
+                                    <img class="img-responsive" src="<?php echo substr($entrada_imagen,45);?>"  width="500px" alt="">
+                                </a>
                                 <hr>
                                 <p><?php echo $entrada_contenido?></p>
+                                <a class="btn btn-primary" href="entrada.php?id_entrada=<?php echo $id_entrada?>">Leer más <span class="glyphicon glyphicon-chevron-right"></span></a>
+
                                 
 
                                 <hr>

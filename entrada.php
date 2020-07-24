@@ -80,7 +80,7 @@
                                 </p>
                                 <p><span class="glyphicon glyphicon-time"></span> <?php echo $entrada_fecha?></p>
                                 <hr>
-                                <img class="img-responsive" src="<?php echo $entrada_imagen?>" width="600px" alt="">
+                                <img class="img-responsive" src="<?php echo $entrada_imagen?>" width="700px" alt="">
                                 <hr>
                                 <p><?php echo $entrada_contenido?></p>
                                 

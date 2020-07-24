@@ -44,7 +44,7 @@
            
           
            /*validamos que los campos no esten vacios*/
-             if(empty($_POST["nombre"]) or empty($_POST["apellido"]) or empty($_POST["rol"]) or empty($_POST["usuario"]) or empty($_POST["correo"]) or empty($_POST["password"])){
+             if(empty($_POST["nombre"]) or empty($_POST["apellido"]) or empty($_POST["rol"]) or empty($_POST["usuario"]) or empty($_POST["correo"]) or empty($_POST["password"]) or empty($idd)){
                  
                  header("Location:usuarios.php?accion=add_usuario&m=1");
                  exit();

@@ -25,11 +25,14 @@
                   if(isset($_POST["submit"])){
                   
                     $buscar=$_POST["buscar"];  
-                } 
+                 }else {
+                     $buscar=""
+                 } 
                 
                 $conectar=Conectar::conexion();
                 
-                $sql="select * from entradas where entrada_etiquetas like '%$buscar%'";
+                $sql="select * from entradas where entrada_titulo like '%$buscar%' or entrada_etiquetas like '%$buscar%'";
+
                 
                 $resultado= $conectar->prepare($sql);
                 
@@ -48,19 +51,21 @@
                             
                           
                           while($reg=$resultado->fetch()){
-                               
+                              $id_entrada=$reg["id_entrada"];
                               $entrada_titulo=$reg["entrada_titulo"];
                               $entrada_autor=$reg["entrada_autor"];
                               $entrada_fecha=$reg["entrada_fecha"];
                               $entrada_imagen=$reg["entrada_imagen"];
-                              $entrada_contenido=$reg["entrada_contenido"];
+                             // $entrada_contenido=$reg["entrada_contenido"];
+                              $entrada_contenido=strip_tags(substr($reg["entrada_contenido"],0,100));
+
                               
                              ?>
                              
                                 
                                 <!-- First Blog Post -->
                                 <h2>
-                                    <a href="#"><?php echo $entrada_titulo?></a>
+                                    <a href="entrada.php?id_entrada=<?php echo $id_entrada?>"><?php echo $entrada_titulo?></a>
                                 </h2>
                                 <p class="lead">
                                     por <a href="index.php"><?php echo $entrada_autor?></a>
@@ -70,7 +75,8 @@
                                 <img class="img-responsive" src="<?php echo $entrada_imagen?>" width="600px"  alt="">
                                 <hr>
                                 <p><?php echo $entrada_contenido?></p>
-                                <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
+                                <a class="btn btn-primary" href="entrada.php?id_entrada=<?php echo $id_entrada?>">Leer más <span class="glyphicon glyphicon-chevron-right"></span></a>
+
 
                                 <hr>
           

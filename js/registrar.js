@@ -342,23 +342,70 @@ $('#registrar_usuario').click(function () {
     var iddCooDes = $("#coordinacion>option:selected").text();
 
 
-    if (iddCoo != null) {
-        $("#iddValor").val(iddCoo);
-        $("#iddDesc").val(iddCooDes);
-    } else if (iddDir != null) {        
-        $("#iddValor").val(iddDir);
-        $("#iddDesc").val(iddDirDes);
-    } else if (iddDgr != null) {
-        $("#iddValor").val(iddDgr);
-        $("#iddDesc").val(iddDgrDes);
-    } else if (iddSub != null) {
-        $("#iddValor").val(iddSub);
-        $("#iddDesc").val(iddSubDes);
-    } else if (iddSec != null) {
-        $("#iddValor").val(iddSec);
-        $("#iddDesc").val(iddSecDes);
-    }
+    // if (iddCoo != null) {
+    //     $("#iddValor").val(iddCoo);
+    //     $("#iddDesc").val(iddCooDes);
+    // } else if (iddDir != null) {        
+    //     $("#iddValor").val(iddDir);
+    //     $("#iddDesc").val(iddDirDes);
+    // } else if (iddDgr != null) {
+    //     $("#iddValor").val(iddDgr);
+    //     $("#iddDesc").val(iddDgrDes);
+    // } else if (iddSub != null) {
+    //     $("#iddValor").val(iddSub);
+    //     $("#iddDesc").val(iddSubDes);
+    // } else if (iddSec != null) {
+    //     $("#iddValor").val(iddSec);
+    //     $("#iddDesc").val(iddSecDes);
+    // }
 
+    if (document.getElementById("osecretaria").style.display == "block") {
+        if(iddSecDes == "Elija una opción"){
+            $("#iddValor").val(null);
+            $("#iddDesc").val(null);
+        }else { 
+            $("#iddValor").val(iddSec);
+            $("#iddDesc").val(iddSecDes);
+        }
+
+    } 
+    if (document.getElementById("osubsecretaria").style.display == "block") {
+        if(iddSubDes == "Elija una opción"){
+            $("#iddValor").val(null);
+            $("#iddDesc").val(null);
+        }else { 
+            $("#iddValor").val(iddSub);
+            $("#iddDesc").val(iddSubDes);
+        }
+       
+    } 
+    if(document.getElementById("odirecciongral").style.display == "block"){
+        if(iddDgrDes == "Elija una opción"){
+            $("#iddValor").val(null);
+            $("#iddDesc").val(null);
+        }else { 
+            $("#iddValor").val(iddDgr);
+            $("#iddDesc").val(iddDgrDes);
+        }
+    }
+    if (document.getElementById("odireccion").style.display == "block") {        
+        if(iddDirDes == "Elija una opción"){
+            $("#iddValor").val(null);
+            $("#iddDesc").val(null);
+        }else { 
+            $("#iddValor").val(iddDir);
+            $("#iddDesc").val(iddDirDes);
+        }
+    }
+    if (document.getElementById("ocoordinacion").style.display == "block") {
+        if(iddCooDes == "Elija una opción"){
+            $("#iddValor").val(null);
+            $("#iddDesc").val(null);
+        }else { 
+            $("#iddValor").val(iddCoo);
+            $("#iddDesc").val(iddCooDes);
+        }
+    } 
 }); 
 
 getMinisterio();
